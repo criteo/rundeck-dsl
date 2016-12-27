@@ -1,0 +1,87 @@
+<joblist>
+  <job>
+    <context>
+      <options preserveOrder='true'>
+        <option name='include' />
+        <option name='exclude' />
+        <option delimiter=',' enforcedvalues='true' multivalued='true' name='dc' required='true' value='tokyo' values='tokyo,amsterdam,new-york' />
+      </options>
+    </context>
+    <description>Invoke as much directives as possible</description>
+    <dispatch>
+      <keepgoing>true</keepgoing>
+      <rankAttribute>nodename</rankAttribute>
+      <rankOrder>descending</rankOrder>
+      <threadcount>4</threadcount>
+    </dispatch>
+    <group>Runner Tests</group>
+    <logging limit='100' limitAction='halt' status='aborted' />
+    <loglevel>DEBUG</loglevel>
+    <multipleExecutions>true</multipleExecutions>
+    <name>most_directives</name>
+    <nodefilters excludeprecedence='false'>
+      <filter>tags: ${option.include} !tags: ${option.exclude}</filter>
+    </nodefilters>
+    <notification>
+      <onfailure>
+        <email attachLog='true' recipients='all@foo.bar' subject='World is Failing!' />
+      </onfailure>
+      <onsuccess>
+        <plugin type='telltale'>
+          <configuration>
+            <entry key='color' value='blue' />
+          </configuration>
+        </plugin>
+      </onsuccess>
+      <onstart>
+        <webhook urls='http://foo.bar' />
+      </onstart>
+    </notification>
+    <retry>3</retry>
+    <schedule crontab='0 47 20 ? * * *' />
+    <sequence keepgoing='true' strategy='step-first'>
+      <command>
+        <description>Say hello</description>
+        <exec>echo hello world</exec>
+      </command>
+      <command>
+        <description>When several lines are required</description>
+        <script><![CDATA[for i in hello world; do
+  echo $i
+done
+]]></script>
+      </command>
+      <command>
+        <scriptinterpreter>zsh</scriptinterpreter>
+        <scriptfile />
+        <scriptargs>world</scriptargs>
+      </command>
+      <command>
+        <scripturl>http://say/hello.sh</scripturl>
+      </command>
+      <command>
+        <jobref group='other' name='say-hello' nodeStep='true'>
+          <nodefilters excludeprecedence='false'>
+            <filter>some</filter>
+          </nodefilters>
+          <dispatch>
+            <keepgoing>false</keepgoing>
+            <rankAttribute>nodename</rankAttribute>
+            <rankOrder>ascending</rankOrder>
+            <threadcount>3</threadcount>
+          </dispatch>
+        </jobref>
+      </command>
+      <command>
+        <description>Saying it in French</description>
+        <node-step-plugin type='localexec'>
+          <configuration>
+            <entry key='command' value='echo bonjour monde' />
+          </configuration>
+        </node-step-plugin>
+      </command>
+    </sequence>
+    <timeout>1h</timeout>
+    <uuid>e5224053-200e-4b65-aabb-4cefaef01a10</uuid>
+  </job>
+</joblist>
