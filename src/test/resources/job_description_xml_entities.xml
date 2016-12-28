@@ -1,0 +1,6 @@
+<joblist>
+  <job>
+    <description><![CDATA[<hello>"&'<world>]]></description>
+    <name>Description containing XML reserved characters (should go into CDATA)</name>
+  </job>
+</joblist>

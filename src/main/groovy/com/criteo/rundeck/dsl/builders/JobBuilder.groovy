@@ -1,6 +1,7 @@
 package com.criteo.rundeck.dsl.builders
 
 import com.criteo.rundeck.dsl.enums.LogLevel
+import org.apache.commons.lang3.StringEscapeUtils
 
 /**
  * Builder of 'job' sections
@@ -118,7 +119,13 @@ class JobBuilder {
                     with Shortcuts.generateXml(ContextBuilder, b.contextClosure)
                 }
                 if (b.description) {
-                    description(b.description)
+                    if (b.description.contains('\n') || !b.description.equals(StringEscapeUtils.escapeXml10(b.description))) {
+                        description {
+                            mkp.yieldUnescaped("<![CDATA[${b.description}]]>")
+                        }
+                    } else {
+                        description(b.description)
+                    }
                 }
                 if (b.dispatchClosure) {
                     with Shortcuts.generateXml(DispatchBuilder, b.dispatchClosure)

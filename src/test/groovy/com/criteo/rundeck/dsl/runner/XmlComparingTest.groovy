@@ -29,4 +29,10 @@ class XmlComparingTest {
     void testGeneratingMostDirectives() {
         generateAndCompare("/most_directives.xml", "/most_directives.groovy")
     }
+
+    @Test
+    void testGeneratingEscapedDescription() {
+        generateAndCompare("/job_description_multiline.xml", "/job_description_multiline.groovy")
+        generateAndCompare("/job_description_xml_entities.xml", "/job_description_xml_entities.groovy")
+    }
 }

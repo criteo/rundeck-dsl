@@ -1,0 +1,10 @@
+<joblist>
+  <job>
+    <description><![CDATA[
+Hello
+
+World
+]]></description>
+    <name>Description on several lines (should go into CDATA)</name>
+  </job>
+</joblist>
