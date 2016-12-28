@@ -9,7 +9,7 @@ class NodefiltersBuilder {
 
     String filter
 
-    def excludePrecedence(boolean value = false) {
+    def excludePrecedence(boolean value = true) {
         this.excludePrecedence = value
     }
 

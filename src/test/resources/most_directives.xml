@@ -19,7 +19,7 @@
     <loglevel>DEBUG</loglevel>
     <multipleExecutions>true</multipleExecutions>
     <name>most_directives</name>
-    <nodefilters excludeprecedence='false'>
+    <nodefilters excludeprecedence='true'>
       <filter>tags: ${option.include} !tags: ${option.exclude}</filter>
     </nodefilters>
     <notification>
@@ -61,7 +61,7 @@ done
       </command>
       <command>
         <jobref group='other' name='say-hello' nodeStep='true'>
-          <nodefilters excludeprecedence='false'>
+          <nodefilters excludeprecedence='true'>
             <filter>some</filter>
           </nodefilters>
           <dispatch>
