@@ -8,17 +8,18 @@
       </options>
     </context>
     <description>Invoke as much directives as possible</description>
-    <dispatch>
-      <keepgoing>true</keepgoing>
-      <rankOrder>descending</rankOrder>
-      <threadcount>4</threadcount>
-    </dispatch>
     <group>Runner Tests</group>
     <logging limit='100' limitAction='halt' status='aborted' />
     <loglevel>DEBUG</loglevel>
     <multipleExecutions>true</multipleExecutions>
     <name>most_directives</name>
-    <nodefilters excludeprecedence='true'>
+    <nodefilters>
+      <dispatch>
+        <excludePrecedence>true</excludePrecedence>
+        <keepgoing>true</keepgoing>
+        <rankOrder>descending</rankOrder>
+        <threadcount>4</threadcount>
+      </dispatch>
       <filter>tags: ${option.include} !tags: ${option.exclude}</filter>
     </nodefilters>
     <notification>
@@ -60,14 +61,15 @@ done
       </command>
       <command>
         <jobref group='other' name='say-hello' nodeStep='true'>
-          <nodefilters excludeprecedence='true'>
+          <nodefilters>
+            <dispatch>
+              <excludePrecedence>true</excludePrecedence>
+              <keepgoing>false</keepgoing>
+              <rankOrder>ascending</rankOrder>
+              <threadcount>3</threadcount>
+            </dispatch>
             <filter>some</filter>
           </nodefilters>
-          <dispatch>
-            <keepgoing>false</keepgoing>
-            <rankOrder>ascending</rankOrder>
-            <threadcount>3</threadcount>
-          </dispatch>
         </jobref>
       </command>
       <command>

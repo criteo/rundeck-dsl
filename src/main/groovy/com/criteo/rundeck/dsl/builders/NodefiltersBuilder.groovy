@@ -5,12 +5,12 @@ package com.criteo.rundeck.dsl.builders
  */
 class NodefiltersBuilder {
 
-    Boolean excludePrecedence
+    Closure dispatchClosure
 
     String filter
 
-    def excludePrecedence(Boolean value = true) {
-        this.excludePrecedence = value
+    def dispatch(@DelegatesTo(DispatchBuilder) Closure value, boolean overwrite = false) {
+        this.dispatchClosure = overwrite ? value : (this.dispatchClosure ?: {}) << value
     }
 
     def filter(String value) {
@@ -19,11 +19,10 @@ class NodefiltersBuilder {
 
     static def generateXml(NodefiltersBuilder b) {
         return {
-            def attributes = [:]
-            if (b.excludePrecedence != null) {
-                attributes.put('excludeprecedence', Boolean.toString(b.excludePrecedence))
-            }
-            nodefilters(attributes) {
+            nodefilters {
+                if (b.dispatchClosure) {
+                    with Shortcuts.generateXml(DispatchBuilder, b.dispatchClosure)
+                }
                 if (b.filter != null) {
                     filter(b.filter)
                 }

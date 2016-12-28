@@ -12,8 +12,6 @@ class JobBuilder {
 
     String description
 
-    Closure dispatchClosure
-
     String group
 
     Closure loggingClosure
@@ -46,10 +44,6 @@ class JobBuilder {
 
     def description(String value) {
         this.description = value
-    }
-
-    def dispatch(@DelegatesTo(DispatchBuilder) Closure value, boolean overwrite = false) {
-        this.dispatchClosure = overwrite ? value : (this.dispatchClosure ?: {}) << value
     }
 
     def group(String value) {
@@ -126,9 +120,6 @@ class JobBuilder {
                     } else {
                         description(b.description)
                     }
-                }
-                if (b.dispatchClosure) {
-                    with Shortcuts.generateXml(DispatchBuilder, b.dispatchClosure)
                 }
                 if (b.group != null) {
                     group(b.group)

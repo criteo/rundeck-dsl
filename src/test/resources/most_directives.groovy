@@ -39,14 +39,13 @@ job('') {
     }
 
     nodefilters {
+        dispatch {
+            excludePrecedence()
+            keepgoing()
+            rankOrder(RankOrder.DESCENDING)
+            threadcount(4)
+        }
         filter('tags: ${option.include} !tags: ${option.exclude}')
-        excludePrecedence()
-    }
-
-    dispatch {
-        keepgoing()
-        rankOrder(RankOrder.DESCENDING)
-        threadcount(4)
     }
 
     schedule {
@@ -82,14 +81,13 @@ done
             nodeStep(true)
 
             nodefilters {
+                dispatch {
+                    excludePrecedence()
+                    keepgoing(false)
+                    rankOrder(RankOrder.ASCENDING)
+                    threadcount(3)
+                }
                 filter('some')
-                excludePrecedence()
-            }
-
-            dispatch {
-                keepgoing(false)
-                rankOrder(RankOrder.ASCENDING)
-                threadcount(3)
             }
         }
 

@@ -7,8 +7,6 @@ class JobRefBuilder extends CommandBuilder {
 
     String arg
 
-    Closure dispatchClosure
-
     String group
 
     String name
@@ -19,10 +17,6 @@ class JobRefBuilder extends CommandBuilder {
 
     def arg(String value) {
         this.arg = value
-    }
-
-    def dispatch(@DelegatesTo(DispatchBuilder) Closure value, boolean overwrite = false) {
-        this.dispatchClosure = overwrite ? value : (this.dispatchClosure ?: {}) << value
     }
 
     def group(String value) {
@@ -59,9 +53,6 @@ class JobRefBuilder extends CommandBuilder {
                 }
                 if (b.nodefiltersClosure) {
                     with Shortcuts.generateXml(NodefiltersBuilder, b.nodefiltersClosure)
-                }
-                if (b.dispatchClosure) {
-                    with Shortcuts.generateXml(DispatchBuilder, b.dispatchClosure)
                 }
             }
         }

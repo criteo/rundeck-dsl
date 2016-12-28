@@ -7,6 +7,8 @@ import com.criteo.rundeck.dsl.enums.RankOrder
  */
 class DispatchBuilder {
 
+    Boolean excludePrecedence
+
     Boolean keepgoing
 
     String rankAttribute
@@ -14,6 +16,10 @@ class DispatchBuilder {
     RankOrder rankOrder
 
     Integer threadcount
+
+    def excludePrecedence(Boolean value = true) {
+        this.excludePrecedence = value
+    }
 
     def keepgoing(Boolean value = true) {
         this.keepgoing = value
@@ -34,6 +40,9 @@ class DispatchBuilder {
     static def generateXml(DispatchBuilder b) {
         return {
             dispatch {
+                if (b.excludePrecedence != null) {
+                    excludePrecedence(b.excludePrecedence)
+                }
                 if (b.keepgoing != null) {
                     keepgoing(b.keepgoing)
                 }
