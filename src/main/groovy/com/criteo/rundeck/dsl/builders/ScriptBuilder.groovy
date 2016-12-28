@@ -19,11 +19,13 @@ class ScriptBuilder extends CommandBuilder {
 
     static def generateXml(ScriptBuilder b) {
         return generateXml(b) {
-            if (b.interpreter) {
+            if (b.interpreter != null) {
                 scriptinterpreter(b.interpreter)
             }
-            script {
-                mkp.yieldUnescaped("<![CDATA[${b.body}]]>")
+            if (b.body != null) {
+                script {
+                    mkp.yieldUnescaped("<![CDATA[${b.body}]]>")
+                }
             }
         }
     }

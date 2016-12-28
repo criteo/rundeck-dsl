@@ -13,7 +13,9 @@ class ExecBuilder extends CommandBuilder {
 
     static def generateXml(ExecBuilder b) {
         return generateXml(b) {
-            exec(b.command)
+            if (b.command != null) {
+                exec(b.command)
+            }
         }
     }
 

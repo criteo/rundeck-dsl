@@ -19,7 +19,7 @@ abstract class CommandBuilder {
 
     static def generateXml(CommandBuilder b, Closure more) {
         return {
-            if (b.description) {
+            if (b.description != null) {
                 description(b.description)
             }
             if (b.errorhandlerClosure) {

@@ -11,25 +11,25 @@ class OptionBuilder {
 
     String description
 
-    boolean enforcedValues
+    Boolean enforcedValues
 
-    boolean isDate
+    Boolean isDate
 
-    boolean multivalued
+    Boolean multivalued
 
     String name
 
     String regex
 
-    boolean required
+    Boolean required
 
-    boolean secure
+    Boolean secure
 
     String storagePath
 
     String value
 
-    boolean valueExposed
+    Boolean valueExposed
 
     def values = []
 
@@ -47,15 +47,15 @@ class OptionBuilder {
         this.description = value
     }
 
-    def enforcedValues(boolean value = true) {
+    def enforcedValues(Boolean value = true) {
         this.enforcedValues = value
     }
 
-    def isDate(boolean value = true) {
+    def isDate(Boolean value = true) {
         this.isDate = value
     }
 
-    def multivalued(boolean value = true) {
+    def multivalued(Boolean value = true) {
         this.multivalued = value
     }
 
@@ -67,11 +67,11 @@ class OptionBuilder {
         this.regex = value
     }
 
-    def required(boolean value = true) {
+    def required(Boolean value = true) {
         this.required = value
     }
 
-    def secure(boolean value = true) {
+    def secure(Boolean value = true) {
         this.secure = value
     }
 
@@ -83,7 +83,7 @@ class OptionBuilder {
         this.value = value
     }
 
-    def valueExposed(boolean value = true) {
+    def valueExposed(Boolean value = true) {
         this.valueExposed = value
     }
 
@@ -98,43 +98,43 @@ class OptionBuilder {
     static def generateXml(OptionBuilder b) {
         return {
             def attributes = [:]
-            if (b.delimiter) {
-                attributes.put('delimiter', b.delimiter)
-            }
-            if (b.dateFormat) { // TODO: check
+            if (b.dateFormat != null) { // TODO: check
                 attributes.put('dateFormat', b.dateFormat)
             }
-            if (b.enforcedValues) {
+            if (b.delimiter != null) {
+                attributes.put('delimiter', b.delimiter)
+            }
+            if (b.enforcedValues != null) {
                 attributes.put('enforcedvalues', b.enforcedValues)
             }
-            if (b.isDate) {
+            if (b.isDate != null) {
                 attributes.put('isDate', b.isDate)
             }
-            if (b.multivalued) {
+            if (b.multivalued != null) {
                 attributes.put('multivalued', b.multivalued)
                 // TODO: check presence of 'delimiter'
             }
-            if (b.name) { // TODO: require
+            if (b.name != null) { // TODO: require
                 attributes.put('name', b.name)
             }
-            if (b.regex) {
+            if (b.regex != null) {
                 attributes.put('regex', b.regex)
             }
-            if (b.required) {
+            if (b.required != null) {
                 attributes.put('required', b.required)
             }
-            if (b.secure) {
+            if (b.secure != null) {
                 // TODO: check absence of 'multivalued'
                 attributes.put('secure', b.secure)
             }
-            if (b.storagePath) {
+            if (b.storagePath != null) {
                 // TODO: check presence of 'secure'
                 attributes.put('storagePath', b.storagePath)
             }
-            if (b.value) {
+            if (b.value != null) {
                 attributes.put('value', b.value)
             }
-            if (b.valueExposed) {
+            if (b.valueExposed != null) {
                 attributes.put('valueExposed', b.valueExposed)
             }
             if (b.values) { // TODO: check validity
@@ -144,7 +144,7 @@ class OptionBuilder {
                 attributes.put('valuesUrl', b.valuesUrl)
             }
             option(attributes) {
-                if (b.description) {
+                if (b.description != null) {
                     description(b.description)
                 }
             }

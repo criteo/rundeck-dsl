@@ -40,7 +40,7 @@ class ScheduleBuilder {
 
     static def generateXml(ScheduleBuilder b) {
         return {
-            if (b.crontab) {
+            if (b.crontab != null) {
                 // TODO: check format
                 // TODO: check other fields are null
                 schedule('crontab': b.crontab)
@@ -55,7 +55,7 @@ class ScheduleBuilder {
                     if (b.weekdayClosure) {
                         with Shortcuts.generateXml(WeekdayBuilder, b.weekdayClosure)
                     }
-                    if (b.year) {
+                    if (b.year != null) {
                         year(year: b.year)
                     }
                 }

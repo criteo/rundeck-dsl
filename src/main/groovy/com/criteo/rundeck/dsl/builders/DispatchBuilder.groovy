@@ -7,15 +7,15 @@ import com.criteo.rundeck.dsl.enums.RankOrder
  */
 class DispatchBuilder {
 
-    boolean keepgoing
+    Boolean keepgoing
 
-    String rankAttribute = 'nodename'
+    String rankAttribute
 
-    RankOrder rankOrder = RankOrder.ASCENDING
+    RankOrder rankOrder
 
     Integer threadcount
 
-    def keepgoing(boolean value = true) {
+    def keepgoing(Boolean value = true) {
         this.keepgoing = value
     }
 
@@ -34,14 +34,16 @@ class DispatchBuilder {
     static def generateXml(DispatchBuilder b) {
         return {
             dispatch {
-                keepgoing(b.keepgoing)
-                if (b.rankAttribute) {
+                if (b.keepgoing != null) {
+                    keepgoing(b.keepgoing)
+                }
+                if (b.rankAttribute != null) {
                     rankAttribute(b.rankAttribute)
                 }
                 if (b.rankOrder) {
                     rankOrder(b.rankOrder.mnemonic)
                 }
-                if (b.threadcount) { // TODO: check positive
+                if (b.threadcount != null) { // TODO: check positive
                     threadcount(b.threadcount)
                 }
             }

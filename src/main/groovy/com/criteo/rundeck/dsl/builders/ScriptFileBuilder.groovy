@@ -20,16 +20,18 @@ class ScriptFileBuilder extends CommandBuilder {
     }
 
     def path(String value) {
-        this.path = path
+        this.path = value
     }
 
     static def generateXml(ScriptFileBuilder b) {
         return generateXml(b) {
-            if (b.interpreter) {
+            if (b.interpreter != null) {
                 scriptinterpreter(b.interpreter)
             }
-            scriptfile(b.path)
-            if (b.args) {
+            if (b.path != null) {
+                scriptfile(b.path)
+            }
+            if (b.args != null) {
                 scriptargs(b.args)
             }
         }

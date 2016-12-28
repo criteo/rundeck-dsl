@@ -20,10 +20,10 @@ class MonthBuilder {
     static def generateXml(MonthBuilder b) {
         return {
             def attributes = [:]
-            if (b.day) {
+            if (b.day != null) {
                 attributes.put('day', b.day)
             }
-            if (b.month) {
+            if (b.month != null) {
                 attributes.put('month', b.month)
             }
             month(attributes)

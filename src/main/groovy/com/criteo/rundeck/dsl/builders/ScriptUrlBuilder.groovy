@@ -25,11 +25,13 @@ class ScriptUrlBuilder extends CommandBuilder {
 
     static def generateXml(ScriptUrlBuilder b) {
         return generateXml(b) {
-            if (b.interpreter) {
+            if (b.interpreter != null) {
                 scriptinterpreter(b.interpreter)
             }
-            scripturl(b.url)
-            if (b.args) {
+            if (b.url != null) {
+                scripturl(b.url)
+            }
+            if (b.args != null) {
                 scriptargs(b.args)
             }
         }

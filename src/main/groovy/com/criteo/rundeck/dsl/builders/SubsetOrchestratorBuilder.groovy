@@ -13,7 +13,9 @@ class SubsetOrchestratorBuilder {
 
     static def generateXml(SubsetOrchestratorBuilder b) {
         return OrchestratorBuilder.generateXml('subset') {
-            count(b.count)
+            if (b.count != null) {
+                count(b.count)
+            }
         }
     }
 }

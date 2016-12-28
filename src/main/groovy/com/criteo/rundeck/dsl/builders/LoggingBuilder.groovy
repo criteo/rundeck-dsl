@@ -19,7 +19,7 @@ class LoggingBuilder {
     static def generateXml(LoggingBuilder b) {
         return {
             def attributes = [:]
-            if (b.limit) { // TODO: check format
+            if (b.limit != null) { // TODO: check format
                 attributes.put('limit', b.limit)
             }
             if (b.limitActionClosure) {
@@ -27,7 +27,7 @@ class LoggingBuilder {
                 switch (limitAction.value) {
                     case LimitActionValue.HALT:
                         attributes.put('limitAction', 'halt')
-                        if (limitAction.statusOnHalt) {
+                        if (limitAction.statusOnHalt != null) {
                             attributes.put('status', limitAction.statusOnHalt)
                         }
                         break;

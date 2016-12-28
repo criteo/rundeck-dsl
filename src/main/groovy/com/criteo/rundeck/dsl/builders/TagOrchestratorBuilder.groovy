@@ -7,7 +7,7 @@ class TagOrchestratorBuilder {
 
     Number maxPerGroup
 
-    boolean stopProcessingGroupAfterTooManyFailure
+    Boolean stopProcessingGroupAfterTooManyFailure
 
     def tagsName = []
 
@@ -15,7 +15,7 @@ class TagOrchestratorBuilder {
         this.maxPerGroup = value
     }
 
-    def stopProcessingGroupAfterTooManyFailure(boolean value = true) {
+    def stopProcessingGroupAfterTooManyFailure(Boolean value = true) {
         this.stopProcessingGroupAfterTooManyFailure = value
     }
 
@@ -25,8 +25,12 @@ class TagOrchestratorBuilder {
 
     static def generateXml(TagOrchestratorBuilder b) {
         return OrchestratorBuilder.generateXml('tag-orchestrator') {
-            maxPerGroup(b.maxPerGroup)
-            stopProcessingGroupAfterTooManyFailure(b.stopProcessingGroupAfterTooManyFailure)
+            if (b.maxPerGroup != null) {
+                maxPerGroup(b.maxPerGroup)
+            }
+            if (b.stopProcessingGroupAfterTooManyFailure != null) {
+                stopProcessingGroupAfterTooManyFailure(b.stopProcessingGroupAfterTooManyFailure)
+            }
             tagsName(b.tagsName.join(' '))
         }
     }

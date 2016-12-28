@@ -10,7 +10,6 @@
     <description>Invoke as much directives as possible</description>
     <dispatch>
       <keepgoing>true</keepgoing>
-      <rankAttribute>nodename</rankAttribute>
       <rankOrder>descending</rankOrder>
       <threadcount>4</threadcount>
     </dispatch>
@@ -53,7 +52,7 @@ done
       </command>
       <command>
         <scriptinterpreter>zsh</scriptinterpreter>
-        <scriptfile />
+        <scriptfile>hello.sh</scriptfile>
         <scriptargs>world</scriptargs>
       </command>
       <command>
@@ -66,7 +65,6 @@ done
           </nodefilters>
           <dispatch>
             <keepgoing>false</keepgoing>
-            <rankAttribute>nodename</rankAttribute>
             <rankOrder>ascending</rankOrder>
             <threadcount>3</threadcount>
           </dispatch>

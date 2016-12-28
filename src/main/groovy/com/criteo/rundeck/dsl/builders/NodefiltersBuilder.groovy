@@ -5,11 +5,11 @@ package com.criteo.rundeck.dsl.builders
  */
 class NodefiltersBuilder {
 
-    boolean excludePrecedence
+    Boolean excludePrecedence
 
     String filter
 
-    def excludePrecedence(boolean value = true) {
+    def excludePrecedence(Boolean value = true) {
         this.excludePrecedence = value
     }
 
@@ -19,8 +19,12 @@ class NodefiltersBuilder {
 
     static def generateXml(NodefiltersBuilder b) {
         return {
-            nodefilters(excludeprecedence: Boolean.toString(b.excludePrecedence)) {
-                if (b.filter) {
+            def attributes = [:]
+            if (b.excludePrecedence != null) {
+                attributes.put('excludeprecedence', Boolean.toString(b.excludePrecedence))
+            }
+            nodefilters(attributes) {
+                if (b.filter != null) {
                     filter(b.filter)
                 }
             }

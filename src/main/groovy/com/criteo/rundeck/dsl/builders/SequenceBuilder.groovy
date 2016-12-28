@@ -7,11 +7,11 @@ import com.criteo.rundeck.dsl.enums.Strategy
  */
 class SequenceBuilder extends CommandsBuilder {
 
-    boolean keepgoing
+    Boolean keepgoing
 
     Strategy strategy
 
-    def keepgoing(boolean value = true) {
+    def keepgoing(Boolean value = true) {
         this.keepgoing = value
     }
 
@@ -22,7 +22,7 @@ class SequenceBuilder extends CommandsBuilder {
     static def generateXml(SequenceBuilder b) {
         return {
             def attributes = [:]
-            if (b.keepgoing) {
+            if (b.keepgoing != null) {
                 attributes.put('keepgoing', b.keepgoing)
             }
             if (b.strategy) {

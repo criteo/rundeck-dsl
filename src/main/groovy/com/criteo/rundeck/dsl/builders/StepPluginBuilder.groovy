@@ -19,7 +19,11 @@ class StepPluginBuilder extends CommandBuilder {
 
     static def generateXml(StepPluginBuilder b) {
         return generateXml(b) {
-            delegate.'step-plugin'(type: b.type) {
+            def attributes = [:]
+            if (b.type != null) {
+                attributes.put('type', b.type)
+            }
+            delegate.'step-plugin'(attributes) {
                 if (b.configurationClosure) {
                     with Shortcuts.generateXml(ConfigurationBuilder, b.configurationClosure)
                 }

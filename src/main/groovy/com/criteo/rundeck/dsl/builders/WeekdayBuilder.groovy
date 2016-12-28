@@ -13,7 +13,11 @@ class WeekdayBuilder {
 
     static def generateXml(WeekdayBuilder b) {
         return {
-            weekday(day: b.day)
+            def attributes = [:]
+            if (b.day != null) {
+                attributes.put('day', b.day)
+            }
+            weekday(attributes)
         }
     }
 }

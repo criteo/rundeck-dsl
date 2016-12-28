@@ -5,13 +5,13 @@ package com.criteo.rundeck.dsl.builders
  */
 class EmailBuilder {
 
-    boolean attachLog
+    Boolean attachLog
 
     String recipients
 
     String subject
 
-    def attachLog(boolean value = true) {
+    def attachLog(Boolean value = true) {
         this.attachLog = value
     }
 
@@ -26,13 +26,13 @@ class EmailBuilder {
     static def generateXml(EmailBuilder b) {
         return {
             def attributes = [:]
-            if (b.attachLog) {
-                attributes.put('attachLog', b.attachLog)
+            if (b.attachLog != null) {
+                attributes.put('attachLog', Boolean.toString(b.attachLog))
             }
-            if (b.recipients) {
+            if (b.recipients != null) {
                 attributes.put('recipients', b.recipients)
             }
-            if (b.subject) {
+            if (b.subject != null) {
                 attributes.put('subject', b.subject)
             }
             email(attributes)

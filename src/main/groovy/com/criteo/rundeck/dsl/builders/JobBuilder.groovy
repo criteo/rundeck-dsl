@@ -20,7 +20,7 @@ class JobBuilder {
 
     LogLevel loglevel
 
-    boolean multipleExecutions
+    Boolean multipleExecutions
 
     String name
 
@@ -64,7 +64,7 @@ class JobBuilder {
         this.loglevel = value
     }
 
-    def multipleExecutions(boolean value = true) {
+    def multipleExecutions(Boolean value = true) {
         this.multipleExecutions = value
     }
 
@@ -118,7 +118,7 @@ class JobBuilder {
                 if (b.contextClosure) {
                     with Shortcuts.generateXml(ContextBuilder, b.contextClosure)
                 }
-                if (b.description) {
+                if (b.description != null) {
                     if (b.description.contains('\n') || !b.description.equals(StringEscapeUtils.escapeXml10(b.description))) {
                         description {
                             mkp.yieldUnescaped("<![CDATA[${b.description}]]>")
@@ -130,7 +130,7 @@ class JobBuilder {
                 if (b.dispatchClosure) {
                     with Shortcuts.generateXml(DispatchBuilder, b.dispatchClosure)
                 }
-                if (b.group) {
+                if (b.group != null) {
                     group(b.group)
                 }
                 if (b.loggingClosure) {
@@ -139,10 +139,10 @@ class JobBuilder {
                 if (b.loglevel) {
                     loglevel(b.loglevel)
                 }
-                if (b.multipleExecutions) {
+                if (b.multipleExecutions != null) {
                     multipleExecutions(b.multipleExecutions)
                 }
-                if (b.name) {
+                if (b.name != null) {
                     name(b.name)
                 }
                 if (b.nodefiltersClosure) {
@@ -154,7 +154,7 @@ class JobBuilder {
                 if (b.orchestrator) {
                     with Shortcuts.generateXml(b.orchestrator.builder, b.orchestrator.closure)
                 }
-                if (b.retry) { // TODO: check: number or '${option.retry}'
+                if (b.retry != null) { // TODO: check: number or '${option.retry}'
                     retry(b.retry)
                 }
                 if (b.scheduleClosure) {
@@ -163,7 +163,7 @@ class JobBuilder {
                 if (b.sequenceClosure) {
                     with Shortcuts.generateXml(SequenceBuilder, b.sequenceClosure)
                 }
-                if (b.timeout) { // TODO: check format
+                if (b.timeout != null) { // TODO: check format
                     timeout(b.timeout)
                 }
                 if (b.uuid) {

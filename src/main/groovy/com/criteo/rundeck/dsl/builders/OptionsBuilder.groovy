@@ -7,7 +7,7 @@ class OptionsBuilder {
 
     def optionClosures = []
 
-    boolean preserveOrder
+    Boolean preserveOrder
 
     def option(String optionName, @DelegatesTo(OptionBuilder) Closure value = {}) {
         this.optionClosures.add({
@@ -16,13 +16,17 @@ class OptionsBuilder {
         })
     }
 
-    def preserveOrder(boolean value = true) {
+    def preserveOrder(Boolean value = true) {
         this.preserveOrder = value
     }
 
     static def generateXml(OptionsBuilder b) {
         return {
-            options(preserveOrder: Boolean.toString(b.preserveOrder)) {
+            def attributes = [:]
+            if (b.preserveOrder != null) {
+                attributes.put('preserveOrder', Boolean.toString(b.preserveOrder))
+            }
+            options(attributes) {
                 b.optionClosures.each { optionClosure ->
                     with Shortcuts.generateXml(OptionBuilder, optionClosure)
                 }

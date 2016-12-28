@@ -19,7 +19,11 @@ class PluginBuilder {
 
     static def generateXml(PluginBuilder b) {
         return {
-            plugin(type: b.type) {
+            def attributes = [:]
+            if (b.type != null) {
+                attributes.put('type', b.type)
+            }
+            plugin(attributes) {
                 if (b.configurationClosure) {
                     with Shortcuts.generateXml(ConfigurationBuilder, b.configurationClosure)
                 }

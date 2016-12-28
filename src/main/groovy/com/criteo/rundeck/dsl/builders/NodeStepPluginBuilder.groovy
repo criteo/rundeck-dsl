@@ -19,7 +19,11 @@ class NodeStepPluginBuilder extends CommandBuilder {
 
     static def generateXml(NodeStepPluginBuilder b) {
         return generateXml(b) {
-            delegate.'node-step-plugin'(type: b.type) {
+            def attributes = [:]
+            if (b.type != null) {
+                attributes.put('type', b.type)
+            }
+            delegate.'node-step-plugin'(attributes) {
                 if (b.configurationClosure) {
                     with Shortcuts.generateXml(ConfigurationBuilder, b.configurationClosure)
                 }
@@ -59,9 +63,11 @@ class NodeStepPluginBuilder extends CommandBuilder {
         }
 
         static def generateXml(LocalExecBuilder b) {
-            NodeStepPluginBuilder.generateXmlForSpecialization('localexec', b.description, b.errorhandlerClosure, [
-                'command': b.command
-            ])
+            def entries = [:]
+            if (b.command != null) {
+                entries.put('command', b.command)
+            }
+            NodeStepPluginBuilder.generateXmlForSpecialization('localexec', b.description, b.errorhandlerClosure, entries)
         }
     }
 }

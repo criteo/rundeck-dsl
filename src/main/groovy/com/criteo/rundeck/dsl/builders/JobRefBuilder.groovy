@@ -13,7 +13,7 @@ class JobRefBuilder extends CommandBuilder {
 
     String name
 
-    boolean nodeStep
+    Boolean nodeStep
 
     Closure nodefiltersClosure
 
@@ -33,7 +33,7 @@ class JobRefBuilder extends CommandBuilder {
         this.name = value
     }
 
-    def nodeStep(boolean value = true) {
+    def nodeStep(Boolean value = true) {
         this.nodeStep = value
     }
 
@@ -44,17 +44,17 @@ class JobRefBuilder extends CommandBuilder {
     static def generateXml(JobRefBuilder b) {
         return generateXml(b) {
             def attributes = [:]
-            if (b.group) {
+            if (b.group != null) {
                 attributes.put('group', b.group)
             }
-            if (b.name) {
+            if (b.name != null) {
                 attributes.put('name', b.name)
             }
-            if (b.nodeStep) {
-                attributes.put('nodeStep', b.nodeStep)
+            if (b.nodeStep != null) {
+                attributes.put('nodeStep', Boolean.toString(b.nodeStep))
             }
             jobref(attributes) {
-                if (b.arg) {
+                if (b.arg != null) {
                     arg(line: b.arg)
                 }
                 if (b.nodefiltersClosure) {
