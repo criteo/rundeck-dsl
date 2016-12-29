@@ -8,8 +8,6 @@ import org.apache.commons.lang3.StringEscapeUtils
  */
 class JobBuilder {
 
-    Closure contextClosure
-
     String description
 
     String group
@@ -26,6 +24,8 @@ class JobBuilder {
 
     Closure notificationClosure
 
+    Closure optionsClosure
+
     def orchestrator
 
     Integer retry
@@ -37,10 +37,6 @@ class JobBuilder {
     String timeout
 
     UUID uuid
-
-    def context(@DelegatesTo(ContextBuilder) Closure value, boolean overwrite = false) {
-        this.contextClosure = overwrite ? value : (this.contextClosure ?: {}) << value
-    }
 
     def description(String value) {
         this.description = value
@@ -72,6 +68,10 @@ class JobBuilder {
 
     def notification(@DelegatesTo(NotificationBuilder) Closure value, boolean overwrite = false) {
         this.notificationClosure = overwrite ? value : (this.notificationClosure ?: {}) << value
+    }
+
+    def options(@DelegatesTo(OptionsBuilder) Closure value, boolean overwrite = false) {
+        this.optionsClosure = overwrite ? value : (this.optionsClosure ?: {}) << value
     }
 
     def retry(Integer value) {
@@ -109,8 +109,8 @@ class JobBuilder {
     static def generateXml(JobBuilder b) {
         return {
             job {
-                if (b.contextClosure) {
-                    with Shortcuts.generateXml(ContextBuilder, b.contextClosure)
+                if (b.optionsClosure) {
+                    with Shortcuts.generateXml(OptionsBuilder, b.optionsClosure)
                 }
                 if (b.description != null) {
                     if (b.description.contains('\n') || !b.description.equals(StringEscapeUtils.escapeXml10(b.description))) {

@@ -21,20 +21,18 @@ job('') {
 
     timeout('1h')
 
-    context {
-        options {
-            preserveOrder()
+    options {
+        preserveOrder()
 
-            option('include')
-            option('exclude')
-            option('dc') {
-                required()
-                enforcedValues()
-                values('tokyo', 'amsterdam', 'new-york')
-                multivalued()
-                delimiter(',')
-                value('tokyo')
-            }
+        option('include')
+        option('exclude')
+        option('dc') {
+            required()
+            enforcedValues()
+            values('tokyo', 'amsterdam', 'new-york')
+            multivalued()
+            delimiter(',')
+            value('tokyo')
         }
     }
 
