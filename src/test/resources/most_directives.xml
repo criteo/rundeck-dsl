@@ -7,8 +7,10 @@
     </options>
     <description>Invoke as much directives as possible</description>
     <group>Runner Tests</group>
-    <logging limit='100' limitAction='halt' status='aborted' />
     <loglevel>DEBUG</loglevel>
+    <loglimit>100</loglimit>
+    <loglimitAction>halt</loglimitAction>
+    <loglimitStatus>aborted</loglimitStatus>
     <multipleExecutions>true</multipleExecutions>
     <name>most_directives</name>
     <nodefilters>

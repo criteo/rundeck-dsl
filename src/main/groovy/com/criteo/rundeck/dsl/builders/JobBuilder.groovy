@@ -12,9 +12,9 @@ class JobBuilder {
 
     String group
 
-    Closure loggingClosure
-
     LogLevel loglevel
+
+    Closure loglimitClosure
 
     Boolean multipleExecutions
 
@@ -46,12 +46,13 @@ class JobBuilder {
         this.group = value
     }
 
-    def logging(@DelegatesTo(LoggingBuilder) Closure value, boolean overwrite = false) {
-        this.loggingClosure = overwrite ? value : (this.loggingClosure ?: {}) << value
-    }
-
     def loglevel(LogLevel value) {
         this.loglevel = value
+    }
+
+    def loglimit(String loggingLimit, @DelegatesTo(LoglimitBuilder) Closure value, boolean overwrite = false) {
+        value = ({ limit(loggingLimit) } << value)
+        this.loglimitClosure = overwrite ? value : (this.loglimitClosure ?: {}) << value
     }
 
     def multipleExecutions(Boolean value = true) {
@@ -124,11 +125,11 @@ class JobBuilder {
                 if (b.group != null) {
                     group(b.group)
                 }
-                if (b.loggingClosure) {
-                    with Shortcuts.generateXml(LoggingBuilder, b.loggingClosure)
-                }
                 if (b.loglevel) {
                     loglevel(b.loglevel)
+                }
+                if (b.loglimitClosure) {
+                    with Shortcuts.generateXml(LoglimitBuilder, b.loglimitClosure)
                 }
                 if (b.multipleExecutions != null) {
                     multipleExecutions(b.multipleExecutions)

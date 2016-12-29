@@ -10,10 +10,8 @@ job('') {
     description('Invoke as much directives as possible')
 
     loglevel(LogLevel.DEBUG)
-    logging {
-        limit('100') {
-            halt('aborted')
-        }
+    loglimit('100') {
+        halt('aborted')
     }
 
     multipleExecutions(true)
