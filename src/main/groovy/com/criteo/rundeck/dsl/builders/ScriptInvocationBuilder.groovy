@@ -7,14 +7,15 @@ class ScriptInvocationBuilder extends CommandBuilder {
 
     String args
 
-    String interpreter
+    Closure interpreterClosure
 
     def args(String value) {
         this.args = value
     }
 
-    def interpreter(String value) {
-        this.interpreter = value
+    def interpreter(String interpreterCommand, @DelegatesTo(ScriptInterpreterBuilder) Closure value = {}, boolean overwrite = false) {
+        value = { command(interpreterCommand) } << value
+        this.interpreterClosure = overwrite ? value : (this.interpreterClosure ?: {}) << value
     }
 
     static def generateXml(ScriptInvocationBuilder b, Closure more) {
@@ -23,8 +24,8 @@ class ScriptInvocationBuilder extends CommandBuilder {
             if (b.args != null) {
                 scriptargs(b.args)
             }
-            if (b.interpreter != null) {
-                scriptinterpreter(b.interpreter)
+            if (b.interpreterClosure != null) {
+                with Shortcuts.generateXml(ScriptInterpreterBuilder, b.interpreterClosure)
             }
         }
     }

@@ -63,6 +63,9 @@ done
 '''.stripIndent()) {
             description('When several lines are required')
             args('some')
+            interpreter('tcsh') {
+                argsQuoted()
+            }
         }
 
         scriptFile('hello.sh') {
@@ -70,7 +73,11 @@ done
             interpreter('zsh')
         }
 
-        scriptUrl('http://say/hello.sh')
+        scriptUrl('http://say/hello.sh') {
+            interpreter('bash') {
+                argsQuoted()
+            }
+        }
 
         jobref {
             group('other')

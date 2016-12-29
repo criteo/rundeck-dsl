@@ -51,6 +51,7 @@
 done
 ]]></script>
         <scriptargs>some</scriptargs>
+        <scriptinterpreter argsquoted='true'>tcsh</scriptinterpreter>
       </command>
       <command>
         <scriptfile>hello.sh</scriptfile>
@@ -59,6 +60,7 @@ done
       </command>
       <command>
         <scripturl>http://say/hello.sh</scripturl>
+        <scriptinterpreter argsquoted='true'>bash</scriptinterpreter>
       </command>
       <command>
         <jobref group='other' name='say-hello' nodeStep='true'>
