@@ -62,6 +62,7 @@ for i in hello world; do
 done
 '''.stripIndent()) {
             description('When several lines are required')
+            args('some')
         }
 
         scriptFile('hello.sh') {

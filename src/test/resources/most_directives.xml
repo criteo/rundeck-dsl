@@ -50,6 +50,7 @@
   echo $i
 done
 ]]></script>
+        <scriptargs>some</scriptargs>
       </command>
       <command>
         <scriptinterpreter>zsh</scriptinterpreter>

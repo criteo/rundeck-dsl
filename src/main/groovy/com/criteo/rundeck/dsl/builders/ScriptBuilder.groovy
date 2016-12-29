@@ -5,9 +5,15 @@ package com.criteo.rundeck.dsl.builders
  */
 class ScriptBuilder extends CommandBuilder {
 
+    String args
+
     String interpreter
 
     String body
+
+    def args(String value) {
+        this.args = value
+    }
 
     def interpreter(String value) {
         this.interpreter = value
@@ -19,13 +25,16 @@ class ScriptBuilder extends CommandBuilder {
 
     static def generateXml(ScriptBuilder b) {
         return generateXml(b) {
-            if (b.interpreter != null) {
-                scriptinterpreter(b.interpreter)
-            }
             if (b.body != null) {
                 script {
                     mkp.yieldUnescaped("<![CDATA[${b.body}]]>")
                 }
+            }
+            if (b.args != null) {
+                scriptargs(b.args)
+            }
+            if (b.interpreter != null) {
+                scriptinterpreter(b.interpreter)
             }
         }
     }
