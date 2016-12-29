@@ -80,6 +80,7 @@ done
         }
 
         jobref {
+            args('hey ho')
             group('other')
             name('say-hello')
             nodeStep(true)

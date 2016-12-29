@@ -5,7 +5,7 @@ package com.criteo.rundeck.dsl.builders
  */
 class JobRefBuilder extends CommandBuilder {
 
-    String arg
+    String args
 
     String group
 
@@ -15,8 +15,8 @@ class JobRefBuilder extends CommandBuilder {
 
     Closure nodefiltersClosure
 
-    def arg(String value) {
-        this.arg = value
+    def args(String value) {
+        this.args = value
     }
 
     def group(String value) {
@@ -48,8 +48,8 @@ class JobRefBuilder extends CommandBuilder {
                 attributes.put('nodeStep', Boolean.toString(b.nodeStep))
             }
             jobref(attributes) {
-                if (b.arg != null) {
-                    arg(line: b.arg)
+                if (b.args != null) {
+                    arg(line: b.args)
                 }
                 if (b.nodefiltersClosure) {
                     with Shortcuts.generateXml(NodefiltersBuilder, b.nodefiltersClosure)

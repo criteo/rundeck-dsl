@@ -64,6 +64,7 @@ done
       </command>
       <command>
         <jobref group='other' name='say-hello' nodeStep='true'>
+          <arg line='hey ho' />
           <nodefilters>
             <dispatch>
               <excludePrecedence>true</excludePrecedence>
