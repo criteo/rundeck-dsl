@@ -53,9 +53,9 @@ done
         <scriptargs>some</scriptargs>
       </command>
       <command>
-        <scriptinterpreter>zsh</scriptinterpreter>
         <scriptfile>hello.sh</scriptfile>
         <scriptargs>world</scriptargs>
+        <scriptinterpreter>zsh</scriptinterpreter>
       </command>
       <command>
         <scripturl>http://say/hello.sh</scripturl>
