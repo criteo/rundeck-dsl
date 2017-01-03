@@ -1,12 +1,10 @@
 package com.criteo.rundeck.dsl.enums
 
 enum RankOrder {
-    ASCENDING('ascending'),
-    DESCENDING('descending')
+    ASCENDING,
+    DESCENDING
 
-    public final String mnemonic
-
-    private RankOrder(mnemonic) {
-        this.mnemonic = mnemonic
+    String toString() {
+        this.name().toLowerCase()
     }
 }

@@ -50,7 +50,7 @@ class DispatchBuilder {
                     rankAttribute(b.rankAttribute)
                 }
                 if (b.rankOrder) {
-                    rankOrder(b.rankOrder.mnemonic)
+                    rankOrder(b.rankOrder.toString())
                 }
                 if (b.threadcount != null) { // TODO: check positive
                     threadcount(b.threadcount)
