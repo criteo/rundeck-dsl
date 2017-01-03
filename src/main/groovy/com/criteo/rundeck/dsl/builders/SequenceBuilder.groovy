@@ -26,7 +26,7 @@ class SequenceBuilder extends CommandsBuilder {
                 attributes.put('keepgoing', b.keepgoing)
             }
             if (b.strategy) {
-                attributes.put('strategy', b.strategy.mnemonic)
+                attributes.put('strategy', b.strategy.toString())
             }
             sequence(attributes) {
                 b.commands.each { e ->

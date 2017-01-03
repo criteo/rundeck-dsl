@@ -1,13 +1,11 @@
 package com.criteo.rundeck.dsl.enums
 
 enum Strategy {
-    NODE_FIRST('node-first'),
-    STEP_FIRST('step-first'),
-    PARALLEL('parallel')
+    NODE_FIRST,
+    STEP_FIRST,
+    PARALLEL
 
-    final String mnemonic
-
-    private Strategy(mnemonic) {
-        this.mnemonic = mnemonic
+    String toString() {
+        this.name().toLowerCase().replaceAll('_', '-')
     }
 }
