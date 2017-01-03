@@ -8,6 +8,10 @@ class LoglimitBuilder {
     enum Actions {
         HALT,
         TRUNCATE
+
+        String toString() {
+            this.name().toLowerCase()
+        }
     }
 
     Actions action
@@ -35,7 +39,7 @@ class LoglimitBuilder {
                 loglimit(b.limit)
             }
             if (b.action != null) {
-                loglimitAction(b.action.toString().toLowerCase())
+                loglimitAction(b.action.toString())
             }
             if (b.statusOnHalt != null) {
                 loglimitStatus(b.statusOnHalt)
