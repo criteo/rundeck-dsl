@@ -5,7 +5,8 @@
       <option name='exclude' />
       <option delimiter=',' enforcedvalues='true' multivalued='true' name='dc' required='true' value='tokyo' values='tokyo,amsterdam,new-york' />
     </options>
-    <description>Invoke as much directives as possible</description>
+    <description><![CDATA[Invoke as much directives as possible
+]]></description>
     <group>Runner Tests</group>
     <loglevel>DEBUG</loglevel>
     <loglimit>100</loglimit>
