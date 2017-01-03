@@ -1,0 +1,98 @@
+- description: |
+    Invoke as much directives as possible
+  group: Runner Tests
+  loglevel: DEBUG
+  loglimit: '100'
+  loglimitAction: halt
+  loglimitStatus: aborted
+  multipleExecutions: true
+  name: most_directives
+  nodefilters:
+    dispatch:
+      excludePrecedence: true
+      keepgoing: true
+      rankOrder: descending
+      threadcount: 4
+    filter: 'tags: ${option.include} !tags: ${option.exclude}'
+  notification:
+    onfailure:
+      email:
+        attachLog: true
+        recipients: all@foo.bar
+        subject: World is Failing!
+    onstart:
+      webhook:
+      - http://foo.bar
+    onsuccess:
+      plugin:
+        configuration:
+          color: blue
+        type: telltale
+  options:
+  - name: include
+  - name: exclude
+  - delimiter: ','
+    enforced: true
+    multivalued: true
+    name: dc
+    required: true
+    value: tokyo
+    values:
+    - tokyo
+    - amsterdam
+    - new-york
+  orchestrator:
+    configuration:
+      percent: '18'
+    type: maxPercentage
+  retry: 3
+  schedule:
+    month: '*'
+    time:
+      hour: '3'
+      minute: '14'
+      seconds: '0'
+    weekday:
+      day: 1-5
+    year: '*'
+  sequence:
+    commands:
+    - description: Say hello
+      errorhandler:
+        keepgoingOnSuccess: true
+      exec: echo hello world
+    - description: When several lines are required
+      interpreterArgsQuoted: true
+      script: |
+        for i in hello world; do
+          echo $i
+        done
+      scriptargs: some
+      scriptinterpreter: tcsh
+    - scriptargs: world
+      scriptfile: hello.sh
+      scriptinterpreter: zsh
+    - interpreterArgsQuoted: true
+      scriptinterpreter: bash
+      scripturl: http://say/hello.sh
+    - jobref:
+        args: hey ho
+        group: other
+        name: say-hello
+        nodeStep: true
+        nodefilters:
+          dispatch:
+            excludePrecedence: true
+            keepgoing: false
+            rankOrder: ascending
+            threadcount: 3
+          filter: some
+    - configuration:
+        command: echo bonjour monde
+      description: Saying it in French
+      nodeStep: true
+      type: localexec
+    keepgoing: true
+    strategy: step-first
+  timeout: 1h
+  uuid: e5224053-200e-4b65-aabb-4cefaef01a10
