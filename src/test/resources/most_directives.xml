@@ -38,6 +38,14 @@
         <webhook urls='http://foo.bar' />
       </onstart>
     </notification>
+    <orchestrator>
+      <configuration>
+        <configuration>
+          <entry key='percent' value='18' />
+        </configuration>
+      </configuration>
+      <type>maxPercentage</type>
+    </orchestrator>
     <retry>3</retry>
     <schedule crontab='0 47 20 ? * * *' />
     <sequence keepgoing='true' strategy='step-first'>

@@ -3,35 +3,27 @@ package com.criteo.rundeck.dsl.builders
 /**
  * Builder of 'tagOrchestrator' sections
  */
-class TagOrchestratorBuilder {
+class TagOrchestratorBuilder extends OrchestratorBuilder {
 
-    Number maxPerGroup
-
-    Boolean stopProcessingGroupAfterTooManyFailure
-
-    def tagsName = []
+    TagOrchestratorBuilder() {
+        super('tag-orchestrator')
+    }
 
     def maxPerGroup(Number value) {
-        this.maxPerGroup = value
+        this.configurationClosure = (this.configurationClosure ?: {}) << {
+            entry('maxPerGroup', value.toString())
+        }
     }
 
     def stopProcessingGroupAfterTooManyFailure(Boolean value = true) {
-        this.stopProcessingGroupAfterTooManyFailure = value
+        this.configurationClosure = (this.configurationClosure ?: {}) << {
+            entry('stopProcessingGroupAfterTooManyFailure', value.toString())
+        }
     }
 
     def tagsName(String... values) {
-        this.tagsName.addAll(values)
-    }
-
-    static def generateXml(TagOrchestratorBuilder b) {
-        return OrchestratorBuilder.generateXml('tag-orchestrator') {
-            if (b.maxPerGroup != null) {
-                maxPerGroup(b.maxPerGroup)
-            }
-            if (b.stopProcessingGroupAfterTooManyFailure != null) {
-                stopProcessingGroupAfterTooManyFailure(b.stopProcessingGroupAfterTooManyFailure)
-            }
-            tagsName(b.tagsName.join(' '))
+        this.configurationClosure = (this.configurationClosure ?: {}) << {
+            entry('tagsName', values.join(' '))
         }
     }
 

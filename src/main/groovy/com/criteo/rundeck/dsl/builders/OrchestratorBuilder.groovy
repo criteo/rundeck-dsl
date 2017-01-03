@@ -3,16 +3,25 @@ package com.criteo.rundeck.dsl.builders
 /**
  * Common helpers for builders of orchestrator sections
  */
-class OrchestratorBuilder {
+abstract class OrchestratorBuilder {
 
-    static def generateXml(String orchestratorType, Closure config) {
+    final String type
+
+    Closure configurationClosure
+
+    OrchestratorBuilder(String type) {
+        this.type = type
+    }
+
+    static def generateXml(OrchestratorBuilder b) {
         return {
             orchestrator {
                 configuration {
-                    with config
+                    with Shortcuts.generateXml(ConfigurationBuilder, b.configurationClosure)
                 }
-                type(orchestratorType)
+                type(b.type)
             }
         }
     }
+
 }

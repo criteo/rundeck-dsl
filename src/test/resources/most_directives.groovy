@@ -123,4 +123,7 @@ done
             webhook(new URL('http://foo.bar'))
         }
     }
+    maxPercentageOrchestrator {
+        percent(18)
+    }
 }

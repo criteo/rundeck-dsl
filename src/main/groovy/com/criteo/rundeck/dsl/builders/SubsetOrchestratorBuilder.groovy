@@ -3,19 +3,16 @@ package com.criteo.rundeck.dsl.builders
 /**
  * Builder of 'subsetOrchestrator' sections
  */
-class SubsetOrchestratorBuilder {
+class SubsetOrchestratorBuilder extends OrchestratorBuilder {
 
-    Integer count
+    SubsetOrchestratorBuilder() {
+        super('subset')
+    }
 
     def count(Integer value) {
-        this.count = value
-    }
-
-    static def generateXml(SubsetOrchestratorBuilder b) {
-        return OrchestratorBuilder.generateXml('subset') {
-            if (b.count != null) {
-                count(b.count)
-            }
+        this.configurationClosure = {
+            entry('count', value.toString())
         }
     }
+
 }

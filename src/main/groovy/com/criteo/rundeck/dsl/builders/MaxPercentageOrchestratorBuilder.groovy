@@ -3,17 +3,16 @@ package com.criteo.rundeck.dsl.builders
 /**
  * Builder of 'maxPercentageOrchestrator' sections
  */
-class MaxPercentageOrchestratorBuilder {
+class MaxPercentageOrchestratorBuilder extends OrchestratorBuilder {
 
-    Integer percent
+    MaxPercentageOrchestratorBuilder() {
+        super('maxPercentage')
+    }
 
     def percent(Integer value) {
-        this.percent = value
-    }
-
-    static def generateXml(MaxPercentageOrchestratorBuilder b) {
-        return OrchestratorBuilder.generateXml('maxPercentage') {
-            percent(b.percent)
+        this.configurationClosure = {
+            entry('percent', value.toString())
         }
     }
+
 }
