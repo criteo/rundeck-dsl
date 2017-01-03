@@ -9,6 +9,20 @@ class NodeStepPluginBuilder extends CommandBuilder {
 
     String type
 
+    NodeStepPluginBuilder() {
+    }
+
+    NodeStepPluginBuilder(String type, String description, Closure errorhandlerClosure, entries) {
+        this.type = type
+        this.description = description
+        this.errorhandlerClosure = errorhandlerClosure
+        this.configurationClosure = {
+            entries.each { k, v ->
+                entry(k, v)
+            }
+        }
+    }
+
     def configuration(@DelegatesTo(ConfigurationBuilder) Closure value, boolean overwrite = false) {
         this.configurationClosure = overwrite ? value : (this.configurationClosure ?: {}) << value
     }
@@ -34,40 +48,19 @@ class NodeStepPluginBuilder extends CommandBuilder {
     //
     // Specializations
 
-    static private def generateXmlForSpecialization(String specType,
-                                                    String specDescription,
-                                                    Closure specErrorHandlerClosure,
-                                                    entries) {
-        return Shortcuts.generateXml(NodeStepPluginBuilder, {
-            if (specDescription) {
-                description(specDescription)
-            }
-            if (specErrorHandlerClosure) {
-                errorhandler(specErrorHandlerClosure)
-            }
-            type(specType)
-            configuration {
-                entries.each { k, v ->
-                    entry(k, v)
-                }
-            }
-        })
-    }
-
-    static class LocalExecBuilder extends CommandBuilder {
+    static class LocalExecBuilder extends NodeStepPluginBuilder {
 
         String command
 
-        def command(String value) {
-            this.command = value
+        LocalExecBuilder() {
+            this.type = 'localexec'
         }
 
-        static def generateXml(LocalExecBuilder b) {
-            def entries = [:]
-            if (b.command != null) {
-                entries.put('command', b.command)
+        def command(String value) {
+            this.configurationClosure = {
+                entry('command', value)
             }
-            NodeStepPluginBuilder.generateXmlForSpecialization('localexec', b.description, b.errorhandlerClosure, entries)
         }
+
     }
 }
