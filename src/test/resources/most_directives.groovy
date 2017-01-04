@@ -56,6 +56,9 @@ Invoke as much directives as possible
 
         exec('echo hello world') {
             description('Say hello')
+            errorhandler {
+                keepgoingOnSuccess()
+            }
         }
 
         script('''\

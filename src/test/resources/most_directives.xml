@@ -51,6 +51,7 @@
     <sequence keepgoing='true' strategy='step-first'>
       <command>
         <description>Say hello</description>
+        <errorhandler keepgoingOnSuccess='true' />
         <exec>echo hello world</exec>
       </command>
       <command>

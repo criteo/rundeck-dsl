@@ -5,10 +5,16 @@ package com.criteo.rundeck.dsl.builders
  */
 class ErrorHandlerBuilder extends CommandsBuilder {
 
+    BuildingClosure command
+
     Boolean keepgoingOnSuccess
 
     def keepgoingOnSuccess(Boolean value = true) {
         this.keepgoingOnSuccess = value
+    }
+
+    def registerCommand(BuildingClosure c) {
+        this.command = c
     }
 
     static def generateXml(ErrorHandlerBuilder b) {
@@ -20,8 +26,8 @@ class ErrorHandlerBuilder extends CommandsBuilder {
             errorhandler(attributes) {
                 // FIXME: "The contents of an <errorhandler> are exactly the same as for a command,"
                 // FIXME: "except it cannot contain any errorhandler itself."
-                b.commands.each { BuildingClosure e ->
-                    with Shortcuts.generateXml(e)
+                if (b.command) {
+                    with Shortcuts.generateXml(b.command)
                 }
             }
         }

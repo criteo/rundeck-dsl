@@ -7,6 +7,8 @@ import com.criteo.rundeck.dsl.enums.Strategy
  */
 class SequenceBuilder extends CommandsBuilder {
 
+    def commands = []
+
     Boolean keepgoing
 
     Strategy strategy
@@ -17,6 +19,10 @@ class SequenceBuilder extends CommandsBuilder {
 
     def strategy(Strategy value) {
         this.strategy = value
+    }
+
+    def registerCommand(BuildingClosure c) {
+        this.commands.add(c)
     }
 
     static def generateXml(SequenceBuilder b) {
