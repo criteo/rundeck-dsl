@@ -5,10 +5,13 @@ package com.criteo.rundeck.dsl.builders
  */
 class EmailBuilder {
 
+    @YamlProperty
     Boolean attachLog
 
+    @YamlProperty
     String recipients
 
+    @YamlProperty
     String subject
 
     def attachLog(Boolean value = true) {

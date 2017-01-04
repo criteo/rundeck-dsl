@@ -5,8 +5,10 @@ package com.criteo.rundeck.dsl.builders
  */
 class MonthBuilder {
 
+    @YamlProperty
     String month
 
+    @YamlProperty(name="dayofmonth")
     String day
 
     def month(String value) {

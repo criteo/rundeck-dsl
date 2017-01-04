@@ -5,10 +5,13 @@ package com.criteo.rundeck.dsl.builders
  */
 class NotificationBuilder {
 
+    @YamlProperty
     BuildingClosure onfailure = new BuildingClosure(NotificationDefinitionBuilder)
 
+    @YamlProperty
     BuildingClosure onstart = new BuildingClosure(NotificationDefinitionBuilder)
 
+    @YamlProperty
     BuildingClosure onsuccess = new BuildingClosure(NotificationDefinitionBuilder)
 
     def onfailure(@DelegatesTo(NotificationDefinitionBuilder) Closure value, boolean overwrite = false) {

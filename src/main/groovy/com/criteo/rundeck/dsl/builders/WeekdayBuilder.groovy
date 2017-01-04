@@ -5,6 +5,7 @@ package com.criteo.rundeck.dsl.builders
  */
 class WeekdayBuilder {
 
+    @YamlProperty
     String day
 
     def day(String value) {

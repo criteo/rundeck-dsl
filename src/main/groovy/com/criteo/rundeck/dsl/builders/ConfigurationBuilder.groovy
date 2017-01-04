@@ -5,6 +5,7 @@ package com.criteo.rundeck.dsl.builders
  */
 class ConfigurationBuilder {
 
+    @YamlProperty(merge=true)
     def entries = [:]
 
     def entry(String key, String value) {

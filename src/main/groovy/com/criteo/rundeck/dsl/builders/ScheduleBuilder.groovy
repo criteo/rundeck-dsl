@@ -5,14 +5,19 @@ package com.criteo.rundeck.dsl.builders
  */
 class ScheduleBuilder {
 
+    @YamlProperty
     String crontab
 
+    @YamlProperty(merge=true)
     BuildingClosure month = new BuildingClosure(MonthBuilder)
 
+    @YamlProperty
     BuildingClosure time = new BuildingClosure(TimeBuilder)
 
+    @YamlProperty
     BuildingClosure weekday = new BuildingClosure(WeekdayBuilder)
 
+    @YamlProperty
     String year
 
     def crontab(String value) {

@@ -7,10 +7,13 @@ import com.criteo.rundeck.dsl.enums.Strategy
  */
 class SequenceBuilder extends CommandsBuilder {
 
+    @YamlProperty
     def commands = []
 
+    @YamlProperty
     Boolean keepgoing
 
+    @YamlProperty
     Strategy strategy
 
     def keepgoing(Boolean value = true) {

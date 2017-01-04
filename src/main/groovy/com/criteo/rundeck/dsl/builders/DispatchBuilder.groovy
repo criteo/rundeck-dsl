@@ -7,14 +7,19 @@ import com.criteo.rundeck.dsl.enums.RankOrder
  */
 class DispatchBuilder {
 
+    @YamlProperty
     Boolean excludePrecedence
 
+    @YamlProperty
     Boolean keepgoing
 
+    @YamlProperty
     String rankAttribute
 
+    @YamlProperty
     RankOrder rankOrder
 
+    @YamlProperty
     Integer threadcount
 
     def excludePrecedence(Boolean value = true) {

@@ -5,6 +5,7 @@ package com.criteo.rundeck.dsl.builders
  */
 class ScriptUrlBuilder extends ScriptInvocationBuilder {
 
+    @YamlProperty(name='scripturl')
     String url
 
     def url(String value) {

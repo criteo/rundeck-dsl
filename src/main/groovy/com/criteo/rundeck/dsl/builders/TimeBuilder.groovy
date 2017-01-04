@@ -5,10 +5,13 @@ package com.criteo.rundeck.dsl.builders
  */
 class TimeBuilder {
 
+    @YamlProperty
     String hour
 
+    @YamlProperty
     String minute
 
+    @YamlProperty
     String seconds
 
     def hour(String value) {

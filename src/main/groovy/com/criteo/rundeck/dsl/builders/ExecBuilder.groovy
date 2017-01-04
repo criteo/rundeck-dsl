@@ -5,6 +5,7 @@ package com.criteo.rundeck.dsl.builders
  */
 class ExecBuilder extends CommandBuilder {
 
+    @YamlProperty(name='exec')
     String command
 
     def command(String value) {

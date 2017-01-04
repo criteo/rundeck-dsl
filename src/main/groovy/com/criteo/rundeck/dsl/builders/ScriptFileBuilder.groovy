@@ -5,6 +5,7 @@ package com.criteo.rundeck.dsl.builders
  */
 class ScriptFileBuilder extends ScriptInvocationBuilder {
 
+    @YamlProperty(name='scriptfile')
     String path
 
     def path(String value) {

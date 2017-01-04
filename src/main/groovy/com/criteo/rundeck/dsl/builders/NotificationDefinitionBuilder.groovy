@@ -5,10 +5,13 @@ package com.criteo.rundeck.dsl.builders
  */
 class NotificationDefinitionBuilder {
 
+    @YamlProperty
     BuildingClosure email = new BuildingClosure(EmailBuilder)
 
+    @YamlProperty
     BuildingClosure plugin = new BuildingClosure(PluginBuilder)
 
+    @YamlProperty
     def webhook = []
 
     def email(@DelegatesTo(EmailBuilder) Closure value, boolean overwrite = false) {

@@ -5,54 +5,51 @@ package com.criteo.rundeck.dsl.builders
  */
 class JobRefBuilder extends CommandBuilder {
 
-    String args
-
-    String group
-
-    String name
-
-    Boolean nodeStep
-
-    BuildingClosure nodefilters = new BuildingClosure(NodefiltersBuilder)
+    @YamlProperty
+    def jobref = [ args: null,
+                   group: null,
+                   name: null,
+                   nodeStep: null,
+                   nodefilters: new BuildingClosure(NodefiltersBuilder) ]
 
     def args(String value) {
-        this.args = value
+        this.jobref.args = value
     }
 
     def group(String value) {
-        this.group = value
+        this.jobref.group = value
     }
 
     def name(String value) {
-        this.name = value
+        this.jobref.name = value
     }
 
     def nodeStep(Boolean value = true) {
-        this.nodeStep = value
+        this.jobref.nodeStep = value
     }
 
     def nodefilters(@DelegatesTo(NodefiltersBuilder) Closure value, boolean overwrite = false) {
-        this.nodefilters.absorb(value, overwrite)
+        this.jobref.nodefilters.absorb(value, overwrite)
     }
 
     static def generateXml(JobRefBuilder b) {
         return generateXml(b) {
             def attributes = [:]
-            if (b.group != null) {
-                attributes.put('group', b.group)
+            if (b.jobref.group != null) {
+                attributes.put('group', b.jobref.group)
             }
-            if (b.name != null) {
-                attributes.put('name', b.name)
+            if (b.jobref.name != null) {
+                attributes.put('name', b.jobref.name)
             }
-            if (b.nodeStep != null) {
-                attributes.put('nodeStep', Boolean.toString(b.nodeStep))
+            if (b.jobref.nodeStep != null) {
+                attributes.put('nodeStep', Boolean.toString(b.jobref.nodeStep))
             }
             jobref(attributes) {
-                if (b.args != null) {
-                    arg(line: b.args)
+                if (b.jobref.args != null) {
+                    arg(line: b.jobref.args)
                 }
-                if (b.nodefilters.value) {
-                    with Shortcuts.generateXml(b.nodefilters)
+                if (b.jobref.nodefilters.value) {
+                    with Shortcuts.generateXml(b.jobref.nodefilters)
                 }
             }
         }

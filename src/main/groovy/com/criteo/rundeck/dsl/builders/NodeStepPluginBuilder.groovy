@@ -5,9 +5,14 @@ package com.criteo.rundeck.dsl.builders
  */
 class NodeStepPluginBuilder extends CommandBuilder {
 
+    @YamlProperty
     BuildingClosure configuration = new BuildingClosure(ConfigurationBuilder)
 
+    @YamlProperty
     String type
+
+    @YamlProperty
+    boolean nodeStep = true
 
     NodeStepPluginBuilder() {
     }

@@ -5,8 +5,10 @@ package com.criteo.rundeck.dsl.builders
  */
 abstract class CommandBuilder {
 
+    @YamlProperty
     String description
 
+    @YamlProperty
     BuildingClosure errorhandler = new BuildingClosure(ErrorHandlerBuilder)
 
     def description(String value) {

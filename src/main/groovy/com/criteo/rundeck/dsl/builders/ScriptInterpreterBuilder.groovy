@@ -5,8 +5,10 @@ package com.criteo.rundeck.dsl.builders
  */
 class ScriptInterpreterBuilder {
 
+    @YamlProperty(name='interpreterArgsQuoted')
     Boolean argsQuoted
 
+    @YamlProperty(name='scriptinterpreter')
     String command
 
     def argsQuoted(Boolean value = true) {

@@ -5,8 +5,10 @@ package com.criteo.rundeck.dsl.builders
  */
 class ErrorHandlerBuilder extends CommandsBuilder {
 
+    @YamlProperty(merge=true)
     BuildingClosure command
 
+    @YamlProperty
     Boolean keepgoingOnSuccess
 
     def keepgoingOnSuccess(Boolean value = true) {

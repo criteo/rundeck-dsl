@@ -5,8 +5,10 @@ package com.criteo.rundeck.dsl.builders
  */
 class ScriptInvocationBuilder extends CommandBuilder {
 
+    @YamlProperty(name='scriptargs')
     String args
 
+    @YamlProperty(name='scriptinterpreter', merge=true)
     BuildingClosure interpreter = new BuildingClosure(ScriptInterpreterBuilder)
 
     def args(String value) {

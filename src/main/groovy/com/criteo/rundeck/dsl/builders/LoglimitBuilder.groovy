@@ -14,10 +14,13 @@ class LoglimitBuilder {
         }
     }
 
+    @YamlProperty(name='loglimitAction')
     Actions action
 
+    @YamlProperty(name='loglimit')
     String limit
 
+    @YamlProperty(name='loglimitStatus')
     String statusOnHalt
 
     def limit(String value) {

@@ -5,6 +5,7 @@ package com.criteo.rundeck.dsl.builders
  */
 class OptionsBuilder {
 
+    @YamlProperty
     def options = []
 
     Boolean preserveOrder
