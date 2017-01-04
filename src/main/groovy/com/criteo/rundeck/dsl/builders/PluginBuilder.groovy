@@ -5,12 +5,12 @@ package com.criteo.rundeck.dsl.builders
  */
 class PluginBuilder {
 
-    Closure configurationClosure
+    BuildingClosure configurationClosure = new BuildingClosure(ConfigurationBuilder)
 
     String type
 
     def configuration(@DelegatesTo(ConfigurationBuilder) Closure value, overwrite = false) {
-        this.configurationClosure = overwrite ? value : (this.configurationClosure ?: {}) << value
+        this.configurationClosure.absorb(value, overwrite)
     }
 
     def type(String value) {
@@ -24,8 +24,8 @@ class PluginBuilder {
                 attributes.put('type', b.type)
             }
             plugin(attributes) {
-                if (b.configurationClosure) {
-                    with Shortcuts.generateXml(ConfigurationBuilder, b.configurationClosure)
+                if (b.configurationClosure.value) {
+                    with Shortcuts.generateXml(b.configurationClosure)
                 }
             }
         }

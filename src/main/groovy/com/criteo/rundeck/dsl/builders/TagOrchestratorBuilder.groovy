@@ -10,21 +10,21 @@ class TagOrchestratorBuilder extends OrchestratorBuilder {
     }
 
     def maxPerGroup(Number value) {
-        this.configurationClosure = (this.configurationClosure ?: {}) << {
+        this.configurationClosure.absorb({
             entry('maxPerGroup', value.toString())
-        }
+        }, false)
     }
 
     def stopProcessingGroupAfterTooManyFailure(Boolean value = true) {
-        this.configurationClosure = (this.configurationClosure ?: {}) << {
+        this.configurationClosure.absorb({
             entry('stopProcessingGroupAfterTooManyFailure', value.toString())
-        }
+        }, false)
     }
 
     def tagsName(String... values) {
-        this.configurationClosure = (this.configurationClosure ?: {}) << {
+        this.configurationClosure.absorb({
             entry('tagsName', values.join(' '))
-        }
+        }, false)
     }
 
 }

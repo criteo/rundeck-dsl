@@ -7,11 +7,11 @@ class ScheduleBuilder {
 
     String crontab
 
-    Closure monthClosure
+    BuildingClosure monthClosure = new BuildingClosure(MonthBuilder)
 
-    Closure timeClosure
+    BuildingClosure timeClosure = new BuildingClosure(TimeBuilder)
 
-    Closure weekdayClosure
+    BuildingClosure weekdayClosure = new BuildingClosure(WeekdayBuilder)
 
     String year
 
@@ -20,18 +20,18 @@ class ScheduleBuilder {
     }
 
     def month(String monthValue, @DelegatesTo(MonthBuilder) Closure value = {}) {
-        this.monthClosure = {
+        this.monthClosure.absorb({
             delegate.month(monthValue)
             with value
-        }
+        }, true)
     }
 
     def time(@DelegatesTo(TimeBuilder) Closure value) {
-        this.timeClosure = value
+        this.timeClosure.absorb(value, true)
     }
 
     def weekday(@DelegatesTo(WeekdayBuilder) Closure value) {
-        this.weekdayClosure = value
+        this.weekdayClosure.absorb(value, true)
     }
 
     def year(String value) {
@@ -46,14 +46,14 @@ class ScheduleBuilder {
                 schedule('crontab': b.crontab)
             } else {
                 schedule {
-                    if (b.monthClosure) {
-                        with Shortcuts.generateXml(MonthBuilder, b.monthClosure)
+                    if (b.monthClosure.value) {
+                        with Shortcuts.generateXml(b.monthClosure)
                     }
-                    if (b.timeClosure) {
-                        with Shortcuts.generateXml(TimeBuilder, b.timeClosure)
+                    if (b.timeClosure.value) {
+                        with Shortcuts.generateXml(b.timeClosure)
                     }
-                    if (b.weekdayClosure) {
-                        with Shortcuts.generateXml(WeekdayBuilder, b.weekdayClosure)
+                    if (b.weekdayClosure.value) {
+                        with Shortcuts.generateXml(b.weekdayClosure)
                     }
                     if (b.year != null) {
                         year(year: b.year)

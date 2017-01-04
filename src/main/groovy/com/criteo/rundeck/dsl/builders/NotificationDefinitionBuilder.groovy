@@ -5,18 +5,18 @@ package com.criteo.rundeck.dsl.builders
  */
 class NotificationDefinitionBuilder {
 
-    Closure emailClosure
+    BuildingClosure emailClosure = new BuildingClosure(EmailBuilder)
 
-    Closure pluginClosure
+    BuildingClosure pluginClosure = new BuildingClosure(PluginBuilder)
 
     def webhook = []
 
     def email(@DelegatesTo(EmailBuilder) Closure value, boolean overwrite = false) {
-        this.emailClosure = overwrite ? value : (this.emailClosure ?: {}) << value
+        this.emailClosure.absorb(value, overwrite)
     }
 
     def plugin(@DelegatesTo(PluginBuilder) Closure value, boolean overwrite = false) {
-        this.pluginClosure = overwrite ? value : (this.pluginClosure ?: {}) << value
+        this.pluginClosure.absorb(value, overwrite)
     }
 
     def webhook(URL... values) {
@@ -25,11 +25,11 @@ class NotificationDefinitionBuilder {
 
     static def generateXml(NotificationDefinitionBuilder b) {
         return {
-            if (b.emailClosure) {
-                with Shortcuts.generateXml(EmailBuilder, b.emailClosure)
+            if (b.emailClosure.value) {
+                with Shortcuts.generateXml(b.emailClosure)
             }
-            if (b.pluginClosure) {
-                with Shortcuts.generateXml(PluginBuilder, b.pluginClosure)
+            if (b.pluginClosure.value) {
+                with Shortcuts.generateXml(b.pluginClosure)
             }
             if (b.webhook) {
                 webhook(urls: b.webhook.join(','))

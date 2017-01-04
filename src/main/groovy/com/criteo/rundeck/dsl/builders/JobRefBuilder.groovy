@@ -13,7 +13,7 @@ class JobRefBuilder extends CommandBuilder {
 
     Boolean nodeStep
 
-    Closure nodefiltersClosure
+    BuildingClosure nodefiltersClosure = new BuildingClosure(NodefiltersBuilder)
 
     def args(String value) {
         this.args = value
@@ -32,7 +32,7 @@ class JobRefBuilder extends CommandBuilder {
     }
 
     def nodefilters(@DelegatesTo(NodefiltersBuilder) Closure value, boolean overwrite = false) {
-        this.nodefiltersClosure = overwrite ? value : (this.nodefiltersClosure ?: {}) << value
+        this.nodefiltersClosure.absorb(value, overwrite)
     }
 
     static def generateXml(JobRefBuilder b) {
@@ -51,8 +51,8 @@ class JobRefBuilder extends CommandBuilder {
                 if (b.args != null) {
                     arg(line: b.args)
                 }
-                if (b.nodefiltersClosure) {
-                    with Shortcuts.generateXml(NodefiltersBuilder, b.nodefiltersClosure)
+                if (b.nodefiltersClosure.value) {
+                    with Shortcuts.generateXml(b.nodefiltersClosure)
                 }
             }
         }

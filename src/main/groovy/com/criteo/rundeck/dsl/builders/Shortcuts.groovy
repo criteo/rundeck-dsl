@@ -14,4 +14,12 @@ class Shortcuts {
         return builder.generateXml(build(builder, c))
     }
 
+    static def queryAllFields(Class c) {
+        c.declaredFields + (c.superclass ? queryAllFields(c.superclass) : [])
+    }
+
+    static Closure generateXml(BuildingClosure c) {
+        return c.builder.generateXml(c.realize())
+    }
+
 }

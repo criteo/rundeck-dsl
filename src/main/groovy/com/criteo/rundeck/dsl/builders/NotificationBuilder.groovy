@@ -5,40 +5,40 @@ package com.criteo.rundeck.dsl.builders
  */
 class NotificationBuilder {
 
-    Closure onfailureClosure
+    BuildingClosure onfailureClosure = new BuildingClosure(NotificationDefinitionBuilder)
 
-    Closure onstartClosure
+    BuildingClosure onstartClosure = new BuildingClosure(NotificationDefinitionBuilder)
 
-    Closure onsuccessClosure
+    BuildingClosure onsuccessClosure = new BuildingClosure(NotificationDefinitionBuilder)
 
     def onfailure(@DelegatesTo(NotificationDefinitionBuilder) Closure value, boolean overwrite = false) {
-        this.onfailureClosure = overwrite ? value : (this.onfailureClosure ?: {}) << value
+        this.onfailureClosure.absorb(value, overwrite)
     }
 
     def onstart(@DelegatesTo(NotificationDefinitionBuilder) Closure value, boolean overwrite = false) {
-        this.onstartClosure = overwrite ? value : (this.onstartClosure ?: {}) << value
+        this.onstartClosure.absorb(value, overwrite)
     }
 
     def onsuccess(@DelegatesTo(NotificationDefinitionBuilder) Closure value, boolean overwrite = false) {
-        this.onsuccessClosure = overwrite ? value : (this.onsuccessClosure ?: {}) << value
+        this.onsuccessClosure.absorb(value, overwrite)
     }
 
     static def generateXml(NotificationBuilder b) {
         return {
             notification {
-                if (b.onfailureClosure) {
+                if (b.onfailureClosure.value) {
                     onfailure {
-                        with Shortcuts.generateXml(NotificationDefinitionBuilder, b.onfailureClosure)
+                        with Shortcuts.generateXml(b.onfailureClosure)
                     }
                 }
-                if (b.onsuccessClosure) {
+                if (b.onsuccessClosure.value) {
                     onsuccess {
-                        with Shortcuts.generateXml(NotificationDefinitionBuilder, b.onsuccessClosure)
+                        with Shortcuts.generateXml(b.onsuccessClosure)
                     }
                 }
-                if (b.onstartClosure) {
+                if (b.onstartClosure.value) {
                     onstart {
-                        with Shortcuts.generateXml(NotificationDefinitionBuilder, b.onstartClosure)
+                        with Shortcuts.generateXml(b.onstartClosure)
                     }
                 }
             }

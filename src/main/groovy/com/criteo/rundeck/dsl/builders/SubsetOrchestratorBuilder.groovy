@@ -10,9 +10,9 @@ class SubsetOrchestratorBuilder extends OrchestratorBuilder {
     }
 
     def count(Integer value) {
-        this.configurationClosure = {
+        this.configurationClosure.absorb({
             entry('count', value.toString())
-        }
+        }, true)
     }
 
 }
