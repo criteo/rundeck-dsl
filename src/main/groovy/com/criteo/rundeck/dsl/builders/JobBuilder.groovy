@@ -26,7 +26,7 @@ class JobBuilder {
 
     BuildingClosure optionsClosure = new BuildingClosure(OptionsBuilder)
 
-    def orchestrator
+    BuildingClosure orchestrator
 
     Integer retry
 
@@ -88,15 +88,15 @@ class JobBuilder {
     }
 
     def subsetOrchestrator(@DelegatesTo(SubsetOrchestratorBuilder) Closure value) {
-        this.orchestrator = [builder: SubsetOrchestratorBuilder, closure: value]
+        this.orchestrator = new BuildingClosure(SubsetOrchestratorBuilder, value)
     }
     // (Require the TagOrchestrator plugin)
     def tagOrchestrator(@DelegatesTo(TagOrchestratorBuilder) Closure value) {
-        this.orchestrator = [builder: TagOrchestratorBuilder, closure: value]
+        this.orchestrator = new BuildingClosure(TagOrchestratorBuilder, value)
     }
     // (Require the MaxPercentageOrchestrator plugin)
     def maxPercentageOrchestrator(@DelegatesTo(MaxPercentageOrchestratorBuilder) Closure value) {
-        this.orchestrator = [builder: MaxPercentageOrchestratorBuilder, closure: value]
+        this.orchestrator = new BuildingClosure(MaxPercentageOrchestratorBuilder, value)
     }
 
     def timeout(String value) {
@@ -144,7 +144,7 @@ class JobBuilder {
                     with Shortcuts.generateXml(b.notificationClosure)
                 }
                 if (b.orchestrator) {
-                    with Shortcuts.generateXml(b.orchestrator.builder, b.orchestrator.closure)
+                    with Shortcuts.generateXml(b.orchestrator)
                 }
                 if (b.retry != null) { // TODO: check: number or '${option.retry}'
                     retry(b.retry)

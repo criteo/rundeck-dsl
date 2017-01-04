@@ -10,10 +10,10 @@ class OptionsBuilder {
     Boolean preserveOrder
 
     def option(String optionName, @DelegatesTo(OptionBuilder) Closure value = {}) {
-        this.optionClosures.add({
+        this.optionClosures.add(new BuildingClosure(OptionBuilder, {
             name(optionName)
             with value
-        })
+        }))
     }
 
     def preserveOrder(Boolean value = true) {
@@ -27,8 +27,8 @@ class OptionsBuilder {
                 attributes.put('preserveOrder', Boolean.toString(b.preserveOrder))
             }
             options(attributes) {
-                b.optionClosures.each { optionClosure ->
-                    with Shortcuts.generateXml(OptionBuilder, optionClosure)
+                b.optionClosures.each { BuildingClosure optionClosure ->
+                    with Shortcuts.generateXml(optionClosure)
                 }
             }
         }

@@ -10,10 +10,6 @@ class Shortcuts {
         b
     }
 
-    static Closure generateXml(Class builder, Closure c) {
-        return builder.generateXml(build(builder, c))
-    }
-
     static def queryAllFields(Class c) {
         c.declaredFields + (c.superclass ? queryAllFields(c.superclass) : [])
     }

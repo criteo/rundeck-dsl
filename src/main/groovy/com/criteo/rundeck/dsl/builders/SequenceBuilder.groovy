@@ -29,9 +29,9 @@ class SequenceBuilder extends CommandsBuilder {
                 attributes.put('strategy', b.strategy.toString())
             }
             sequence(attributes) {
-                b.commands.each { e ->
+                b.commands.each { BuildingClosure e ->
                     command {
-                        with Shortcuts.generateXml(e.builder, e.closure)
+                        with Shortcuts.generateXml(e)
                     }
                 }
             }

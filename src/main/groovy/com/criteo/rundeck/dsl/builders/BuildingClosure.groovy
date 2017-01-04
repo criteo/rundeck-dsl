@@ -6,8 +6,9 @@ class BuildingClosure {
 
     Closure value
 
-    BuildingClosure(Class builder) {
+    BuildingClosure(Class builder, Closure value = null) {
         this.builder = builder
+        this.value = value
     }
 
     def absorb(Closure more, boolean overwrite) {

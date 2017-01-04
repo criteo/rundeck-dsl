@@ -20,8 +20,8 @@ class ErrorHandlerBuilder extends CommandsBuilder {
             errorhandler(attributes) {
                 // FIXME: "The contents of an <errorhandler> are exactly the same as for a command,"
                 // FIXME: "except it cannot contain any errorhandler itself."
-                b.commands.each { e ->
-                    with Shortcuts.generateXml(e.builder, e.closure)
+                b.commands.each { BuildingClosure e ->
+                    with Shortcuts.generateXml(e)
                 }
             }
         }
