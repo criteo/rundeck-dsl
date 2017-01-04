@@ -47,7 +47,12 @@
       <type>maxPercentage</type>
     </orchestrator>
     <retry>3</retry>
-    <schedule crontab='0 47 20 ? * * *' />
+    <schedule>
+      <month month='*' />
+      <time hour='3' minute='14' seconds='0' />
+      <weekday day='1-5' />
+      <year year='*' />
+    </schedule>
     <sequence keepgoing='true' strategy='step-first'>
       <command>
         <description>Say hello</description>

@@ -47,7 +47,16 @@ Invoke as much directives as possible
     }
 
     schedule {
-        crontab('0 47 20 ? * * *')
+        month('*')
+        time {
+            hour('3')
+            minute('14')
+            seconds('0')
+        }
+        weekday {
+            day('1-5')
+        }
+        year('*')
     }
 
     sequence {
