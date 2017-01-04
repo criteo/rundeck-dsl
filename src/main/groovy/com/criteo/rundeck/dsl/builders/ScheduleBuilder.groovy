@@ -7,11 +7,11 @@ class ScheduleBuilder {
 
     String crontab
 
-    BuildingClosure monthClosure = new BuildingClosure(MonthBuilder)
+    BuildingClosure month = new BuildingClosure(MonthBuilder)
 
-    BuildingClosure timeClosure = new BuildingClosure(TimeBuilder)
+    BuildingClosure time = new BuildingClosure(TimeBuilder)
 
-    BuildingClosure weekdayClosure = new BuildingClosure(WeekdayBuilder)
+    BuildingClosure weekday = new BuildingClosure(WeekdayBuilder)
 
     String year
 
@@ -20,18 +20,18 @@ class ScheduleBuilder {
     }
 
     def month(String monthValue, @DelegatesTo(MonthBuilder) Closure value = {}) {
-        this.monthClosure.absorb({
+        this.month.absorb({
             delegate.month(monthValue)
             with value
         }, true)
     }
 
     def time(@DelegatesTo(TimeBuilder) Closure value) {
-        this.timeClosure.absorb(value, true)
+        this.time.absorb(value, true)
     }
 
     def weekday(@DelegatesTo(WeekdayBuilder) Closure value) {
-        this.weekdayClosure.absorb(value, true)
+        this.weekday.absorb(value, true)
     }
 
     def year(String value) {
@@ -46,14 +46,14 @@ class ScheduleBuilder {
                 schedule('crontab': b.crontab)
             } else {
                 schedule {
-                    if (b.monthClosure.value) {
-                        with Shortcuts.generateXml(b.monthClosure)
+                    if (b.month.value) {
+                        with Shortcuts.generateXml(b.month)
                     }
-                    if (b.timeClosure.value) {
-                        with Shortcuts.generateXml(b.timeClosure)
+                    if (b.time.value) {
+                        with Shortcuts.generateXml(b.time)
                     }
-                    if (b.weekdayClosure.value) {
-                        with Shortcuts.generateXml(b.weekdayClosure)
+                    if (b.weekday.value) {
+                        with Shortcuts.generateXml(b.weekday)
                     }
                     if (b.year != null) {
                         year(year: b.year)

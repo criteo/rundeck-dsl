@@ -7,14 +7,14 @@ abstract class CommandBuilder {
 
     String description
 
-    BuildingClosure errorhandlerClosure = new BuildingClosure(ErrorHandlerBuilder)
+    BuildingClosure errorhandler = new BuildingClosure(ErrorHandlerBuilder)
 
     def description(String value) {
         this.description = value
     }
 
     def errorhandler(@DelegatesTo(ErrorHandlerBuilder) Closure value, boolean overwrite = false) {
-        this.errorhandlerClosure.absorb(value, overwrite)
+        this.errorhandler.absorb(value, overwrite)
     }
 
     static def generateXml(CommandBuilder b, Closure more) {
@@ -22,8 +22,8 @@ abstract class CommandBuilder {
             if (b.description != null) {
                 description(b.description)
             }
-            if (b.errorhandlerClosure.value) {
-                with Shortcuts.generateXml(b.errorhandlerClosure)
+            if (b.errorhandler.value) {
+                with Shortcuts.generateXml(b.errorhandler)
             }
             with more
         }

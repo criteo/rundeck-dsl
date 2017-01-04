@@ -5,7 +5,7 @@ package com.criteo.rundeck.dsl.builders
  */
 class NodeStepPluginBuilder extends CommandBuilder {
 
-    BuildingClosure configurationClosure = new BuildingClosure(ConfigurationBuilder)
+    BuildingClosure configuration = new BuildingClosure(ConfigurationBuilder)
 
     String type
 
@@ -15,8 +15,8 @@ class NodeStepPluginBuilder extends CommandBuilder {
     NodeStepPluginBuilder(String type, String description, Closure errorhandlerClosure, entries) {
         this.type = type
         this.description = description
-        this.errorhandlerClosure.absorb(errorhandlerClosure, true)
-        this.configurationClosure.absorb({
+        this.errorhandler.absorb(errorhandlerClosure, true)
+        this.configuration.absorb({
             entries.each { k, v ->
                 entry(k, v)
             }
@@ -24,7 +24,7 @@ class NodeStepPluginBuilder extends CommandBuilder {
     }
 
     def configuration(@DelegatesTo(ConfigurationBuilder) Closure value, boolean overwrite = false) {
-        this.configurationClosure.absorb(value, overwrite)
+        this.configuration.absorb(value, overwrite)
     }
 
     def type(String value) {
@@ -38,8 +38,8 @@ class NodeStepPluginBuilder extends CommandBuilder {
                 attributes.put('type', b.type)
             }
             delegate.'node-step-plugin'(attributes) {
-                if (b.configurationClosure.value) {
-                    with Shortcuts.generateXml(b.configurationClosure)
+                if (b.configuration.value) {
+                    with Shortcuts.generateXml(b.configuration)
                 }
             }
         }
@@ -57,7 +57,7 @@ class NodeStepPluginBuilder extends CommandBuilder {
         }
 
         def command(String value) {
-            this.configurationClosure.absorb({
+            this.configuration.absorb({
                 entry('command', value)
             }, true)
         }

@@ -5,12 +5,12 @@ package com.criteo.rundeck.dsl.builders
  */
 class NodefiltersBuilder {
 
-    BuildingClosure dispatchClosure = new BuildingClosure(DispatchBuilder)
+    BuildingClosure dispatch = new BuildingClosure(DispatchBuilder)
 
     String filter
 
     def dispatch(@DelegatesTo(DispatchBuilder) Closure value, boolean overwrite = false) {
-        this.dispatchClosure.absorb(value, overwrite)
+        this.dispatch.absorb(value, overwrite)
     }
 
     def filter(String value) {
@@ -20,8 +20,8 @@ class NodefiltersBuilder {
     static def generateXml(NodefiltersBuilder b) {
         return {
             nodefilters {
-                if (b.dispatchClosure.value) {
-                    with Shortcuts.generateXml(b.dispatchClosure)
+                if (b.dispatch.value) {
+                    with Shortcuts.generateXml(b.dispatch)
                 }
                 if (b.filter != null) {
                     filter(b.filter)

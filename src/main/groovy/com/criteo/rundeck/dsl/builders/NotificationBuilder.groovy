@@ -5,40 +5,40 @@ package com.criteo.rundeck.dsl.builders
  */
 class NotificationBuilder {
 
-    BuildingClosure onfailureClosure = new BuildingClosure(NotificationDefinitionBuilder)
+    BuildingClosure onfailure = new BuildingClosure(NotificationDefinitionBuilder)
 
-    BuildingClosure onstartClosure = new BuildingClosure(NotificationDefinitionBuilder)
+    BuildingClosure onstart = new BuildingClosure(NotificationDefinitionBuilder)
 
-    BuildingClosure onsuccessClosure = new BuildingClosure(NotificationDefinitionBuilder)
+    BuildingClosure onsuccess = new BuildingClosure(NotificationDefinitionBuilder)
 
     def onfailure(@DelegatesTo(NotificationDefinitionBuilder) Closure value, boolean overwrite = false) {
-        this.onfailureClosure.absorb(value, overwrite)
+        this.onfailure.absorb(value, overwrite)
     }
 
     def onstart(@DelegatesTo(NotificationDefinitionBuilder) Closure value, boolean overwrite = false) {
-        this.onstartClosure.absorb(value, overwrite)
+        this.onstart.absorb(value, overwrite)
     }
 
     def onsuccess(@DelegatesTo(NotificationDefinitionBuilder) Closure value, boolean overwrite = false) {
-        this.onsuccessClosure.absorb(value, overwrite)
+        this.onsuccess.absorb(value, overwrite)
     }
 
     static def generateXml(NotificationBuilder b) {
         return {
             notification {
-                if (b.onfailureClosure.value) {
+                if (b.onfailure.value) {
                     onfailure {
-                        with Shortcuts.generateXml(b.onfailureClosure)
+                        with Shortcuts.generateXml(b.onfailure)
                     }
                 }
-                if (b.onsuccessClosure.value) {
+                if (b.onsuccess.value) {
                     onsuccess {
-                        with Shortcuts.generateXml(b.onsuccessClosure)
+                        with Shortcuts.generateXml(b.onsuccess)
                     }
                 }
-                if (b.onstartClosure.value) {
+                if (b.onstart.value) {
                     onstart {
-                        with Shortcuts.generateXml(b.onstartClosure)
+                        with Shortcuts.generateXml(b.onstart)
                     }
                 }
             }

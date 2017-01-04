@@ -7,7 +7,7 @@ abstract class OrchestratorBuilder {
 
     final String type
 
-    BuildingClosure configurationClosure = new BuildingClosure(ConfigurationBuilder)
+    BuildingClosure configuration = new BuildingClosure(ConfigurationBuilder)
 
     OrchestratorBuilder(String type) {
         this.type = type
@@ -17,7 +17,7 @@ abstract class OrchestratorBuilder {
         return {
             orchestrator {
                 configuration {
-                    with Shortcuts.generateXml(b.configurationClosure)
+                    with Shortcuts.generateXml(b.configuration)
                 }
                 type(b.type)
             }

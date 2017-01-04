@@ -5,12 +5,12 @@ package com.criteo.rundeck.dsl.builders
  */
 class OptionsBuilder {
 
-    def optionClosures = []
+    def options = []
 
     Boolean preserveOrder
 
     def option(String optionName, @DelegatesTo(OptionBuilder) Closure value = {}) {
-        this.optionClosures.add(new BuildingClosure(OptionBuilder, {
+        this.options.add(new BuildingClosure(OptionBuilder, {
             name(optionName)
             with value
         }))
@@ -27,7 +27,7 @@ class OptionsBuilder {
                 attributes.put('preserveOrder', Boolean.toString(b.preserveOrder))
             }
             options(attributes) {
-                b.optionClosures.each { BuildingClosure optionClosure ->
+                b.options.each { BuildingClosure optionClosure ->
                     with Shortcuts.generateXml(optionClosure)
                 }
             }

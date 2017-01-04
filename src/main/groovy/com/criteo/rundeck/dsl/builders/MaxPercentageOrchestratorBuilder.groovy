@@ -10,7 +10,7 @@ class MaxPercentageOrchestratorBuilder extends OrchestratorBuilder {
     }
 
     def percent(Integer value) {
-        this.configurationClosure.absorb({
+        this.configuration.absorb({
             entry('percent', value.toString())
         }, true)
     }
