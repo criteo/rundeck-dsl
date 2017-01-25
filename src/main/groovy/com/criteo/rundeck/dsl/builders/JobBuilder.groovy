@@ -1,7 +1,7 @@
 package com.criteo.rundeck.dsl.builders
 
-import com.criteo.rundeck.dsl.enums.LogLevel
 import org.apache.commons.lang3.StringEscapeUtils
+import com.criteo.rundeck.dsl.model.LogLevel
 
 /**
  * Builder of 'job' sections

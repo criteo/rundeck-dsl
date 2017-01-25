@@ -1,4 +1,4 @@
-package com.criteo.rundeck.dsl.enums
+package com.criteo.rundeck.dsl.model
 
 enum LogLevel {
     DEBUG,

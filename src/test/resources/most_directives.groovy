@@ -1,6 +1,6 @@
-import com.criteo.rundeck.dsl.enums.LogLevel
-import com.criteo.rundeck.dsl.enums.RankOrder
-import com.criteo.rundeck.dsl.enums.Strategy
+import com.criteo.rundeck.dsl.model.LogLevel
+import com.criteo.rundeck.dsl.model.RankOrder
+import com.criteo.rundeck.dsl.model.Strategy
 
 job('') {
     group('Runner Tests')

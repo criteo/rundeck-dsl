@@ -1,6 +1,6 @@
 package com.criteo.rundeck.dsl.builders
 
-import com.criteo.rundeck.dsl.enums.RankOrder
+import com.criteo.rundeck.dsl.model.RankOrder
 
 /**
  * Builder of 'dispatch' sections

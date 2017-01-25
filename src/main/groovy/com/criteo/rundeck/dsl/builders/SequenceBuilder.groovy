@@ -1,6 +1,6 @@
 package com.criteo.rundeck.dsl.builders
 
-import com.criteo.rundeck.dsl.enums.Strategy
+import com.criteo.rundeck.dsl.model.Strategy
 
 /**
  * Builder of 'sequence' sections
