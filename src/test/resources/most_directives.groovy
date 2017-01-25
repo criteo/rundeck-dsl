@@ -16,6 +16,8 @@ Invoke as much directives as possible
         halt('aborted')
     }
 
+    executionEnabled(false)
+
     multipleExecutions(true)
     retry(3)
 
@@ -46,6 +48,8 @@ Invoke as much directives as possible
         filter('tags: ${option.include} !tags: ${option.exclude}')
     }
 
+    nodesSelectedByDefault()
+
     schedule {
         month('*')
         time {
@@ -58,6 +62,8 @@ Invoke as much directives as possible
         }
         year('*')
     }
+
+    scheduleEnabled()
 
     sequence {
         keepgoing()

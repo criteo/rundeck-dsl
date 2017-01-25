@@ -12,6 +12,9 @@ class JobBuilder {
     String description
 
     @YamlProperty
+    Boolean executionEnabled
+
+    @YamlProperty
     String group
 
     @YamlProperty
@@ -30,6 +33,9 @@ class JobBuilder {
     BuildingClosure nodefilters = new BuildingClosure(NodefiltersBuilder)
 
     @YamlProperty
+    Boolean nodesSelectedByDefault
+
+    @YamlProperty
     BuildingClosure notification = new BuildingClosure(NotificationBuilder)
 
     @YamlProperty(merge=true)
@@ -45,6 +51,9 @@ class JobBuilder {
     BuildingClosure schedule = new BuildingClosure(ScheduleBuilder)
 
     @YamlProperty
+    Boolean scheduleEnabled
+
+    @YamlProperty
     BuildingClosure sequence = new BuildingClosure(SequenceBuilder)
 
     @YamlProperty
@@ -55,6 +64,10 @@ class JobBuilder {
 
     def description(String value) {
         this.description = value
+    }
+
+    def executionEnabled(Boolean value = true) {
+        this.executionEnabled = value
     }
 
     def group(String value) {
@@ -82,6 +95,10 @@ class JobBuilder {
         this.nodefilters.absorb(value, overwrite)
     }
 
+    def nodesSelectedByDefault(Boolean value = true) {
+        this.nodesSelectedByDefault = value
+    }
+
     def notification(@DelegatesTo(NotificationBuilder) Closure value, boolean overwrite = false) {
         this.notification.absorb(value, overwrite)
     }
@@ -96,6 +113,10 @@ class JobBuilder {
 
     def schedule(@DelegatesTo(ScheduleBuilder) Closure value, boolean overwrite = false) {
         this.schedule.absorb(value, overwrite)
+    }
+
+    def scheduleEnabled(Boolean value = true) {
+        this.scheduleEnabled = value
     }
 
     def sequence(@DelegatesTo(SequenceBuilder) Closure value, boolean overwrite = false) {

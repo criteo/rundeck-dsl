@@ -1,5 +1,6 @@
 - description: |
     Invoke as much directives as possible
+  executionEnabled: false
   group: Runner Tests
   loglevel: DEBUG
   loglimit: '100'
@@ -14,6 +15,7 @@
       rankOrder: descending
       threadcount: 4
     filter: 'tags: ${option.include} !tags: ${option.exclude}'
+  nodesSelectedByDefault: true
   notification:
     onfailure:
       email:
@@ -55,6 +57,7 @@
     weekday:
       day: 1-5
     year: '*'
+  scheduleEnabled: true
   sequence:
     commands:
     - description: Say hello
