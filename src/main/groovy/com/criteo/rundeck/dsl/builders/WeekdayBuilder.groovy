@@ -15,7 +15,6 @@ class WeekdayBuilder {
         return w
     }
 
-    @YamlProperty
     String day
 
     def day(String value) {

@@ -17,13 +17,10 @@ class TimeBuilder {
         return t
     }
 
-    @YamlProperty
     String hour
 
-    @YamlProperty
     String minute
 
-    @YamlProperty
     String seconds
 
     def hour(String value) {

@@ -7,10 +7,8 @@ abstract class CommandBuilder {
 
     abstract build()
 
-    @YamlProperty
     String description
 
-    @YamlProperty
     BuildingClosure errorhandler = new BuildingClosure(ErrorHandlerBuilder)
 
     def description(String value) {

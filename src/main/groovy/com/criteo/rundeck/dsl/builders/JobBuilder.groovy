@@ -33,58 +33,40 @@ class JobBuilder {
         return j
     }
 
-    @YamlProperty
     String description
 
-    @YamlProperty
     Boolean executionEnabled
 
-    @YamlProperty
     String group
 
-    @YamlProperty
     LogLevel loglevel
 
-    @YamlProperty(merge=true)
     BuildingClosure loglimit = new BuildingClosure(LoglimitBuilder)
 
-    @YamlProperty
     Boolean multipleExecutions
 
-    @YamlProperty
     String name
 
-    @YamlProperty
     BuildingClosure nodefilters = new BuildingClosure(NodefiltersBuilder)
 
-    @YamlProperty
     Boolean nodesSelectedByDefault
 
-    @YamlProperty
     BuildingClosure notification = new BuildingClosure(NotificationBuilder)
 
-    @YamlProperty(merge=true)
     BuildingClosure options = new BuildingClosure(OptionsBuilder)
 
-    @YamlProperty
     BuildingClosure orchestrator
 
-    @YamlProperty
     Integer retry
 
-    @YamlProperty
     BuildingClosure schedule = new BuildingClosure(ScheduleBuilder)
 
-    @YamlProperty
     Boolean scheduleEnabled
 
-    @YamlProperty
     BuildingClosure sequence = new BuildingClosure(SequenceBuilder)
 
-    @YamlProperty
     String timeout
 
-    @YamlProperty
     UUID uuid
 
     def description(String value) {

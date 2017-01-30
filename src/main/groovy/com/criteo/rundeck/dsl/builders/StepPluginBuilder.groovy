@@ -16,10 +16,8 @@ class StepPluginBuilder extends CommandBuilder {
         return s
     }
 
-    @YamlProperty
     BuildingClosure configuration = new BuildingClosure(ConfigurationBuilder)
 
-    @YamlProperty
     String type
 
     def configuration(@DelegatesTo(ConfigurationBuilder) Closure value, boolean overwrite = false) {

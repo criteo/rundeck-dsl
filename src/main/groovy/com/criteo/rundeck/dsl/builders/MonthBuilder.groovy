@@ -16,10 +16,8 @@ class MonthBuilder {
         return m
     }
 
-    @YamlProperty
     String month
 
-    @YamlProperty(name="dayofmonth")
     String day
 
     def month(String value) {

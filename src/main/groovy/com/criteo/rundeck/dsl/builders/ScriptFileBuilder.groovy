@@ -19,7 +19,6 @@ class ScriptFileBuilder extends ScriptInvocationBuilder {
         return s
     }
 
-    @YamlProperty(name='scriptfile')
     String path
 
     def path(String value) {

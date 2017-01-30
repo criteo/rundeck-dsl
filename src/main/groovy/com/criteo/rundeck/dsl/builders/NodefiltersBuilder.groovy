@@ -16,10 +16,8 @@ class NodefiltersBuilder {
         return n
     }
 
-    @YamlProperty
     BuildingClosure dispatch = new BuildingClosure(DispatchBuilder)
 
-    @YamlProperty
     String filter
 
     def dispatch(@DelegatesTo(DispatchBuilder) Closure value, boolean overwrite = false) {

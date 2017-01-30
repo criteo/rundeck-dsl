@@ -20,19 +20,14 @@ class DispatchBuilder {
         return d
     }
 
-    @YamlProperty
     Boolean excludePrecedence
 
-    @YamlProperty
     Boolean keepgoing
 
-    @YamlProperty
     String rankAttribute
 
-    @YamlProperty
     RankOrder rankOrder
 
-    @YamlProperty
     Integer threadcount
 
     def excludePrecedence(Boolean value = true) {

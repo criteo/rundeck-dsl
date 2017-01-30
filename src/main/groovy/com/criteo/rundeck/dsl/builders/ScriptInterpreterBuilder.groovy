@@ -16,10 +16,8 @@ class ScriptInterpreterBuilder {
         return s
     }
 
-    @YamlProperty(name='interpreterArgsQuoted')
     Boolean argsQuoted
 
-    @YamlProperty(name='scriptinterpreter')
     String command
 
     def argsQuoted(Boolean value = true) {

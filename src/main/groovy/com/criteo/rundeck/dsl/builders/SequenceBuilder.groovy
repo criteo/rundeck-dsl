@@ -18,13 +18,10 @@ class SequenceBuilder extends CommandsBuilder {
         return s
     }
 
-    @YamlProperty
     def commands = []
 
-    @YamlProperty
     Boolean keepgoing
 
-    @YamlProperty
     Strategy strategy
 
     def keepgoing(Boolean value = true) {

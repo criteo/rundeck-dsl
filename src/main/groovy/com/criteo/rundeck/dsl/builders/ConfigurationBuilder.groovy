@@ -15,7 +15,6 @@ class ConfigurationBuilder {
         return c
     }
 
-    @YamlProperty(merge=true)
     def entries = [:]
 
     def entry(String key, String value) {

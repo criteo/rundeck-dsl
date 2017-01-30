@@ -19,13 +19,10 @@ class NodeStepPluginBuilder extends CommandBuilder {
         return n
     }
 
-    @YamlProperty
     BuildingClosure configuration = new BuildingClosure(ConfigurationBuilder)
 
-    @YamlProperty
     String type
 
-    @YamlProperty
     boolean nodeStep = true
 
     NodeStepPluginBuilder() {

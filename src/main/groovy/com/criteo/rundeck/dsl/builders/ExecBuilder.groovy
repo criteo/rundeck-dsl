@@ -17,7 +17,6 @@ class ExecBuilder extends CommandBuilder {
         return e
     }
 
-    @YamlProperty(name='exec')
     String command
 
     def command(String value) {

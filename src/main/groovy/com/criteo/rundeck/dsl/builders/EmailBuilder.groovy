@@ -17,13 +17,10 @@ class EmailBuilder {
         return e
     }
 
-    @YamlProperty
     Boolean attachLog
 
-    @YamlProperty
     String recipients
 
-    @YamlProperty
     String subject
 
     def attachLog(Boolean value = true) {

@@ -16,7 +16,6 @@ class OptionsBuilder {
         return o
     }
 
-    @YamlProperty
     def options = []
 
     Boolean preserveOrder

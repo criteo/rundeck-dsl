@@ -20,7 +20,6 @@ class ScriptBuilder extends ScriptInvocationBuilder {
         return s
     }
 
-    @YamlProperty(name='script')
     String body
 
     def body(String value) {

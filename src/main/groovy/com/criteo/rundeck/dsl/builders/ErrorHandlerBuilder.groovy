@@ -16,10 +16,8 @@ class ErrorHandlerBuilder extends CommandsBuilder {
         return e
     }
 
-    @YamlProperty(merge=true)
     BuildingClosure command
 
-    @YamlProperty
     Boolean keepgoingOnSuccess
 
     def keepgoingOnSuccess(Boolean value = true) {

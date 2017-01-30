@@ -23,7 +23,6 @@ class JobRefBuilder extends CommandBuilder {
         return j
     }
 
-    @YamlProperty
     def jobref = [ args: null,
                    group: null,
                    name: null,

@@ -29,49 +29,34 @@ class OptionBuilder {
         return o
     }
 
-    @YamlProperty
     String dateFormat
 
-    @YamlProperty
     String delimiter
 
-    @YamlProperty
     String description
 
-    @YamlProperty(name='enforced')
     Boolean enforcedValues
 
-    @YamlProperty
     Boolean isDate
 
-    @YamlProperty
     Boolean multivalued
 
-    @YamlProperty
     String name
 
-    @YamlProperty
     String regex
 
-    @YamlProperty
     Boolean required
 
-    @YamlProperty
     Boolean secure
 
-    @YamlProperty
     String storagePath
 
-    @YamlProperty
     String value
 
-    @YamlProperty
     Boolean valueExposed
 
-    @YamlProperty
     def values = []
 
-    @YamlProperty
     URL valuesUrl
 
     def dateFormat(String value) {

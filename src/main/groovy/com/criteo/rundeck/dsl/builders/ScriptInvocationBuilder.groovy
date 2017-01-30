@@ -18,10 +18,8 @@ class ScriptInvocationBuilder extends CommandBuilder {
         return s
     }
 
-    @YamlProperty(name='scriptargs')
     String args
 
-    @YamlProperty(name='scriptinterpreter', merge=true)
     BuildingClosure interpreter = new BuildingClosure(ScriptInterpreterBuilder)
 
     def args(String value) {
