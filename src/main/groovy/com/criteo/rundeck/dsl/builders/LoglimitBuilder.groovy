@@ -1,18 +1,12 @@
 package com.criteo.rundeck.dsl.builders
 
+import com.criteo.rundeck.dsl.model.Actions
+
 /**
  * Builder of 'limitAction' sections
  */
 class LoglimitBuilder {
 
-    enum Actions {
-        HALT,
-        TRUNCATE
-
-        String toString() {
-            this.name().toLowerCase()
-        }
-    }
 
     @YamlProperty(name='loglimitAction')
     Actions action
