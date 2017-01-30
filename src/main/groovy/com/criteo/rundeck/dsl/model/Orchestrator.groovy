@@ -7,7 +7,7 @@ abstract class Orchestrator {
     def checker() { return null }
 
     @YamlProperty
-    final String type
+    String type
 
     @YamlProperty
     Configuration configuration
