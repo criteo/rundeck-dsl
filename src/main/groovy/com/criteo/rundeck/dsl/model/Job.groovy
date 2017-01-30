@@ -13,7 +13,7 @@ class Job {
         if (this.timeout != null) {
             def validFormat = /\d+|(\d+d)? ?(\d+h)? ?(\d+m)? ?(\d+s)?/
             def match = this.timeout ==~ validFormat
-            if (!match.matches())
+            if (!match)
                 throw new Error("""The timeout format is invalid. Value can be a number of second or a series of integer using d (days), h (hours), m (minutes or s (seconds). It was: ${this.timeout}""")
         }
 
