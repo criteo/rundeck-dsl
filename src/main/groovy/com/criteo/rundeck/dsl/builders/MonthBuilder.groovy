@@ -19,16 +19,4 @@ class MonthBuilder {
         this.day = value
     }
 
-    static def generateXml(MonthBuilder b) {
-        return {
-            def attributes = [:]
-            if (b.day != null) {
-                attributes.put('day', b.day)
-            }
-            if (b.month != null) {
-                attributes.put('month', b.month)
-            }
-            month(attributes)
-        }
-    }
 }

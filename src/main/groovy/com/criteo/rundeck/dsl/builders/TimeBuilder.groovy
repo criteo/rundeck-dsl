@@ -26,19 +26,4 @@ class TimeBuilder {
         this.seconds = value
     }
 
-    static def generateXml(TimeBuilder b) {
-        return {
-            def attributes = [:]
-            if (b.hour != null) {
-                attributes.put('hour', b.hour)
-            }
-            if (b.minute != null) {
-                attributes.put('minute', b.minute)
-            }
-            if (b.seconds != null) {
-                attributes.put('seconds', b.seconds)
-            }
-            time(attributes)
-        }
-    }
 }

@@ -19,15 +19,4 @@ abstract class CommandBuilder {
         this.errorhandler.absorb(value, overwrite)
     }
 
-    static def generateXml(CommandBuilder b, Closure more) {
-        return {
-            if (b.description != null) {
-                description(b.description)
-            }
-            if (b.errorhandler.value) {
-                with Shortcuts.generateXml(b.errorhandler)
-            }
-            with more
-        }
-    }
 }

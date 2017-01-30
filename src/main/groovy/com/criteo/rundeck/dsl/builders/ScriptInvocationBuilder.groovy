@@ -20,15 +20,4 @@ class ScriptInvocationBuilder extends CommandBuilder {
         this.interpreter.absorb(value, overwrite)
     }
 
-    static def generateXml(ScriptInvocationBuilder b, Closure more) {
-        return CommandBuilder.generateXml(b) {
-            with more
-            if (b.args != null) {
-                scriptargs(b.args)
-            }
-            if (b.interpreter.value) {
-                with Shortcuts.generateXml(b.interpreter)
-            }
-        }
-    }
 }

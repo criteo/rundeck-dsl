@@ -12,13 +12,4 @@ class ConfigurationBuilder {
         this.entries.put(key, value)
     }
 
-    static def generateXml(ConfigurationBuilder b) {
-        return {
-            configuration {
-                b.entries.each { key, value ->
-                    entry(key: key, value: value)
-                }
-            }
-        }
-    }
 }

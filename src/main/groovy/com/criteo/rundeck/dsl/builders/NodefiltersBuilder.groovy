@@ -19,16 +19,4 @@ class NodefiltersBuilder {
         this.filter = value
     }
 
-    static def generateXml(NodefiltersBuilder b) {
-        return {
-            nodefilters {
-                if (b.dispatch.value) {
-                    with Shortcuts.generateXml(b.dispatch)
-                }
-                if (b.filter != null) {
-                    filter(b.filter)
-                }
-            }
-        }
-    }
 }

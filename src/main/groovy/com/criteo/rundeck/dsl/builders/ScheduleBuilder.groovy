@@ -43,28 +43,4 @@ class ScheduleBuilder {
         this.year = value
     }
 
-    static def generateXml(ScheduleBuilder b) {
-        return {
-            if (b.crontab != null) {
-                // TODO: check format
-                // TODO: check other fields are null
-                schedule('crontab': b.crontab)
-            } else {
-                schedule {
-                    if (b.month.value) {
-                        with Shortcuts.generateXml(b.month)
-                    }
-                    if (b.time.value) {
-                        with Shortcuts.generateXml(b.time)
-                    }
-                    if (b.weekday.value) {
-                        with Shortcuts.generateXml(b.weekday)
-                    }
-                    if (b.year != null) {
-                        year(year: b.year)
-                    }
-                }
-            }
-        }
-    }
 }

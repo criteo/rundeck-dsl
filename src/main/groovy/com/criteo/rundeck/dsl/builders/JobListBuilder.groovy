@@ -14,11 +14,4 @@ class JobListBuilder {
         }))
     }
 
-    static def generateXml(JobListBuilder b) {
-        return {
-            b.jobClosures.each { BuildingClosure jobClosure ->
-                with Shortcuts.generateXml(jobClosure)
-            }
-        }
-    }
 }

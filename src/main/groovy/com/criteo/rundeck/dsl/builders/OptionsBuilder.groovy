@@ -21,17 +21,4 @@ class OptionsBuilder {
         this.preserveOrder = value
     }
 
-    static def generateXml(OptionsBuilder b) {
-        return {
-            def attributes = [:]
-            if (b.preserveOrder != null) {
-                attributes.put('preserveOrder', Boolean.toString(b.preserveOrder))
-            }
-            options(attributes) {
-                b.options.each { BuildingClosure optionClosure ->
-                    with Shortcuts.generateXml(optionClosure)
-                }
-            }
-        }
-    }
 }

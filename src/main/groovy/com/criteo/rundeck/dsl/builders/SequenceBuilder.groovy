@@ -28,22 +28,4 @@ class SequenceBuilder extends CommandsBuilder {
         this.commands.add(c)
     }
 
-    static def generateXml(SequenceBuilder b) {
-        return {
-            def attributes = [:]
-            if (b.keepgoing != null) {
-                attributes.put('keepgoing', b.keepgoing)
-            }
-            if (b.strategy) {
-                attributes.put('strategy', b.strategy.toString())
-            }
-            sequence(attributes) {
-                b.commands.each { BuildingClosure e ->
-                    command {
-                        with Shortcuts.generateXml(e)
-                    }
-                }
-            }
-        }
-    }
 }

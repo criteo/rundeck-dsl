@@ -12,13 +12,4 @@ class ScriptBuilder extends ScriptInvocationBuilder {
         this.body = value
     }
 
-    static def generateXml(ScriptBuilder b) {
-        return generateXml(b) {
-            if (b.body != null) {
-                script {
-                    mkp.yieldUnescaped("<![CDATA[${b.body}]]>")
-                }
-            }
-        }
-    }
 }

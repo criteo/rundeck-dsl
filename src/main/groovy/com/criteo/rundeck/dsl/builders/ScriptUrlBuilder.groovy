@@ -12,11 +12,4 @@ class ScriptUrlBuilder extends ScriptInvocationBuilder {
         this.url = value
     }
 
-    static def generateXml(ScriptUrlBuilder b) {
-        return generateXml(b) {
-            if (b.url != null) {
-                scripturl(b.url)
-            }
-        }
-    }
 }

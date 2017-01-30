@@ -42,25 +42,4 @@ class DispatchBuilder {
         this.threadcount = value
     }
 
-    static def generateXml(DispatchBuilder b) {
-        return {
-            dispatch {
-                if (b.excludePrecedence != null) {
-                    excludePrecedence(b.excludePrecedence)
-                }
-                if (b.keepgoing != null) {
-                    keepgoing(b.keepgoing)
-                }
-                if (b.rankAttribute != null) {
-                    rankAttribute(b.rankAttribute)
-                }
-                if (b.rankOrder) {
-                    rankOrder(b.rankOrder.toString())
-                }
-                if (b.threadcount != null) { // TODO: check positive
-                    threadcount(b.threadcount)
-                }
-            }
-        }
-    }
 }

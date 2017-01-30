@@ -26,25 +26,4 @@ class NotificationBuilder {
         this.onsuccess.absorb(value, overwrite)
     }
 
-    static def generateXml(NotificationBuilder b) {
-        return {
-            notification {
-                if (b.onfailure.value) {
-                    onfailure {
-                        with Shortcuts.generateXml(b.onfailure)
-                    }
-                }
-                if (b.onsuccess.value) {
-                    onsuccess {
-                        with Shortcuts.generateXml(b.onsuccess)
-                    }
-                }
-                if (b.onstart.value) {
-                    onstart {
-                        with Shortcuts.generateXml(b.onstart)
-                    }
-                }
-            }
-        }
-    }
 }

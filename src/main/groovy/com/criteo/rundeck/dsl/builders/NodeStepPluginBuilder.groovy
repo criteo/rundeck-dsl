@@ -36,20 +36,6 @@ class NodeStepPluginBuilder extends CommandBuilder {
         this.type = value
     }
 
-    static def generateXml(NodeStepPluginBuilder b) {
-        return generateXml(b) {
-            def attributes = [:]
-            if (b.type != null) {
-                attributes.put('type', b.type)
-            }
-            delegate.'node-step-plugin'(attributes) {
-                if (b.configuration.value) {
-                    with Shortcuts.generateXml(b.configuration)
-                }
-            }
-        }
-    }
-
     //
     // Specializations
 

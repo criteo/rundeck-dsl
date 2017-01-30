@@ -12,11 +12,4 @@ class ScriptFileBuilder extends ScriptInvocationBuilder {
         this.path = value
     }
 
-    static def generateXml(ScriptFileBuilder b) {
-        return generateXml(b) {
-            if (b.path != null) {
-                scriptfile(b.path)
-            }
-        }
-    }
 }

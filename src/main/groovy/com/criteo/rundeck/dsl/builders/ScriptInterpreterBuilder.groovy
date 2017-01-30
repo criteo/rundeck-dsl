@@ -19,14 +19,4 @@ class ScriptInterpreterBuilder {
         this.command = value
     }
 
-    static def generateXml(ScriptInterpreterBuilder b) {
-        return {
-            def attributes = [:]
-            if (b.argsQuoted) {
-                attributes.put('argsquoted', b.argsQuoted)
-            }
-            scriptinterpreter(attributes, b.command)
-        }
-    }
-
 }

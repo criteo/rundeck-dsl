@@ -26,17 +26,4 @@ class NotificationDefinitionBuilder {
         this.webhook.addAll(values)
     }
 
-    static def generateXml(NotificationDefinitionBuilder b) {
-        return {
-            if (b.email.value) {
-                with Shortcuts.generateXml(b.email)
-            }
-            if (b.plugin.value) {
-                with Shortcuts.generateXml(b.plugin)
-            }
-            if (b.webhook) {
-                webhook(urls: b.webhook.join(','))
-            }
-        }
-    }
 }

@@ -12,12 +12,4 @@ class ExecBuilder extends CommandBuilder {
         this.command = value
     }
 
-    static def generateXml(ExecBuilder b) {
-        return generateXml(b) {
-            if (b.command != null) {
-                exec(b.command)
-            }
-        }
-    }
-
 }

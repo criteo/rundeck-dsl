@@ -14,8 +14,4 @@ class Shortcuts {
         c.declaredFields + (c.superclass ? queryAllFields(c.superclass) : [])
     }
 
-    static Closure generateXml(BuildingClosure c) {
-        return c.builder.generateXml(c.realize())
-    }
-
 }

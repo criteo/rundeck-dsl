@@ -36,17 +36,4 @@ class LoglimitBuilder {
         this.action = Actions.TRUNCATE
     }
 
-    static def generateXml(LoglimitBuilder b) {
-        return {
-            if (b.limit != null) {
-                loglimit(b.limit)
-            }
-            if (b.action != null) {
-                loglimitAction(b.action.toString())
-            }
-            if (b.statusOnHalt != null) {
-                loglimitStatus(b.statusOnHalt)
-            }
-        }
-    }
 }

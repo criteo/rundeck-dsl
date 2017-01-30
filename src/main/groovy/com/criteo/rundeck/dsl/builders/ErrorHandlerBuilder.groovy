@@ -19,20 +19,4 @@ class ErrorHandlerBuilder extends CommandsBuilder {
         this.command = c
     }
 
-    static def generateXml(ErrorHandlerBuilder b) {
-        return {
-            def attributes = [:]
-            if (b.keepgoingOnSuccess != null) {
-                attributes.put('keepgoingOnSuccess', Boolean.toString(b.keepgoingOnSuccess))
-            }
-            errorhandler(attributes) {
-                // FIXME: "The contents of an <errorhandler> are exactly the same as for a command,"
-                // FIXME: "except it cannot contain any errorhandler itself."
-                if (b.command) {
-                    with Shortcuts.generateXml(b.command)
-                }
-            }
-        }
-    }
-
 }

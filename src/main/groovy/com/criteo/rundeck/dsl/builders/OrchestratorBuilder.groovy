@@ -14,16 +14,4 @@ abstract class OrchestratorBuilder {
     OrchestratorBuilder(String type) {
         this.type = type
     }
-
-    static def generateXml(OrchestratorBuilder b) {
-        return {
-            orchestrator {
-                configuration {
-                    with Shortcuts.generateXml(b.configuration)
-                }
-                type(b.type)
-            }
-        }
-    }
-
 }
