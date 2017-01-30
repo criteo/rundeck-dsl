@@ -1,9 +1,20 @@
 package com.criteo.rundeck.dsl.builders
 
+import com.criteo.rundeck.dsl.model.TagOrchestrator
+
 /**
  * Builder of 'tagOrchestrator' sections
  */
 class TagOrchestratorBuilder extends OrchestratorBuilder {
+
+    def build() {
+        TagOrchestrator o = new TagOrchestrator()
+
+        o.configuration = this.configuration?.value ? this.configuration.realize().build() : null
+        o.type = this.type
+
+        return o
+    }
 
     TagOrchestratorBuilder() {
         super('tag-orchestrator')

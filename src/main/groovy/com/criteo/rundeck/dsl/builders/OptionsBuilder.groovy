@@ -1,9 +1,20 @@
 package com.criteo.rundeck.dsl.builders
 
+import com.criteo.rundeck.dsl.model.Options
+
 /**
  * Builder of 'options' sections
  */
 class OptionsBuilder {
+
+    def build() {
+        Options o = new Options()
+
+        o.options = this.options.collect() { it.realize().build() }
+        o.preserveOrder = this.preserveOrder
+
+        return o
+    }
 
     @YamlProperty
     def options = []

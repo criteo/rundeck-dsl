@@ -1,9 +1,33 @@
 package com.criteo.rundeck.dsl.builders
 
+import com.criteo.rundeck.dsl.model.Option
+
 /**
  * Builder of 'option' sections
  */
 class OptionBuilder {
+
+    def build() {
+        Option o = new Option()
+
+        o.dateFormat = this.dateFormat
+        o.delimiter = this.delimiter
+        o.description = this.description
+        o.enforcedValues = this.enforcedValues
+        o.isDate = this.isDate
+        o.multivalued = this.multivalued
+        o.name = this.name
+        o.regex = this.regex
+        o.required = this.required
+        o.secure = this.secure
+        o.storagePath = this.storagePath
+        o.value = this.value
+        o.valueExposed = this.valueExposed
+        o.values = this.values
+        o.valuesUrl = this.valuesUrl
+
+        return o
+    }
 
     @YamlProperty
     String dateFormat

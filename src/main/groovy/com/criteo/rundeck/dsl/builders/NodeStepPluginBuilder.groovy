@@ -1,9 +1,23 @@
 package com.criteo.rundeck.dsl.builders
 
+import com.criteo.rundeck.dsl.model.NodeStepPlugin
+
 /**
  * Builder of 'node-step-plugin' sections
  */
 class NodeStepPluginBuilder extends CommandBuilder {
+
+    def build() {
+        NodeStepPlugin n = new NodeStepPlugin()
+
+        n.description = this.description
+        n.errorhandler = this.errorhandler?.value ? this.errorhandler.realize().build() : null
+        n.configuration = this.configuration?.value ? this.configuration.realize().build() : null
+        n.type = this.type
+        n.nodeStep = this.nodeStep
+
+        return n
+    }
 
     @YamlProperty
     BuildingClosure configuration = new BuildingClosure(ConfigurationBuilder)

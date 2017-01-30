@@ -1,12 +1,34 @@
 package com.criteo.rundeck.dsl.builders
 
-import org.apache.commons.lang3.StringEscapeUtils
+import com.criteo.rundeck.dsl.model.Job
 import com.criteo.rundeck.dsl.model.LogLevel
 
 /**
  * Builder of 'job' sections
  */
 class JobBuilder {
+
+    def build() {
+        Job j = new Job()
+
+        j.description = this.description
+        j.group = this.group
+        j.loglevel = this.loglevel
+        j.loglimit = this.loglimit?.value ? this.loglimit.realize().build() : null
+        j.multipleExecutions = this.multipleExecutions
+        j.name = this.name
+        j.nodefilters = this.nodefilters?.value ? this.nodefilters.realize().build() : null
+        j.notification = this.notification?.value ? this.notification.realize().build() : null
+        j.options = this.options?.value ? this.options.realize().build() : null
+        j.orchestrator = this.orchestrator?.value ? this.orchestrator.realize().build() : null
+        j.retry = this.retry
+        j.schedule = this.schedule?.value ? this.schedule.realize().build() : null
+        j.sequence = this.sequence?.value ? this.sequence.realize().build() : null
+        j.timeout = this.timeout
+        j.uuid = this.uuid
+
+        return j
+    }
 
     @YamlProperty
     String description

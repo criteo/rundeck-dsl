@@ -1,9 +1,27 @@
 package com.criteo.rundeck.dsl.builders
 
+import com.criteo.rundeck.dsl.model.JobRef
+
 /**
  * Builder of 'job-ref' sections
  */
 class JobRefBuilder extends CommandBuilder {
+
+    def build() {
+        JobRef j = new JobRef()
+
+        j.jobref = [ args: this.jobref.args,
+                     group: this.jobref.group,
+                     name: this.jobref.name,
+                     nodeStep: this.jobref.nodeStep,
+                     nodefilters: null ]
+
+        if (this.jobref.nodefilters?.value) {
+            j.jobref.nodefilters = this.jobref.nodefilters.realize().build()
+        }
+
+        return j
+    }
 
     @YamlProperty
     def jobref = [ args: null,

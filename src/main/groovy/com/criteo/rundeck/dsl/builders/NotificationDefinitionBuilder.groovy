@@ -1,9 +1,21 @@
 package com.criteo.rundeck.dsl.builders
 
+import com.criteo.rundeck.dsl.model.NotificationDefinition
+
 /**
  * Builder of 'notification-definition' sections
  */
 class NotificationDefinitionBuilder {
+
+    def build() {
+        NotificationDefinition n = new NotificationDefinition()
+
+        n.email = this.email?.value ? this.email.realize().build() : null
+        n.plugin = this.plugin?.value ? this.plugin.realize().build() : null
+        n.webhook = this.webhook
+
+        return n
+    }
 
     @YamlProperty
     BuildingClosure email = new BuildingClosure(EmailBuilder)

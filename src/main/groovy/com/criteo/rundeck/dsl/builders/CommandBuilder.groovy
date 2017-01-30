@@ -5,6 +5,8 @@ package com.criteo.rundeck.dsl.builders
  */
 abstract class CommandBuilder {
 
+    abstract build()
+
     @YamlProperty
     String description
 

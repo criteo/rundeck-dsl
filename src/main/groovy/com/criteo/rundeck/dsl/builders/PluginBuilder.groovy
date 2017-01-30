@@ -1,9 +1,20 @@
 package com.criteo.rundeck.dsl.builders
 
+import com.criteo.rundeck.dsl.model.Plugin
+
 /**
  * Builder of 'plugin' sections
  */
 class PluginBuilder {
+
+    def build() {
+        Plugin p = new Plugin()
+
+        p.configuration = this.configuration?.value ? this.configuration.realize().build() : null
+        p.type = this.type
+
+        return p
+    }
 
     @YamlProperty
     BuildingClosure configuration = new BuildingClosure(ConfigurationBuilder)

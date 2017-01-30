@@ -1,11 +1,24 @@
 package com.criteo.rundeck.dsl.builders
 
+import com.criteo.rundeck.dsl.model.Dispatch
 import com.criteo.rundeck.dsl.model.RankOrder
 
 /**
  * Builder of 'dispatch' sections
  */
 class DispatchBuilder {
+
+    def build() {
+        Dispatch d = new Dispatch()
+
+        d.excludePrecedence = this.excludePrecedence
+        d.keepgoing = this.keepgoing
+        d.rankAttribute = this.rankAttribute
+        d.rankOrder = this.rankOrder
+        d.threadcount = this.threadcount
+
+        return d
+    }
 
     @YamlProperty
     Boolean excludePrecedence

@@ -1,9 +1,23 @@
 package com.criteo.rundeck.dsl.builders
 
+import com.criteo.rundeck.dsl.model.Schedule
+
 /**
  * Builder of 'schedule' sections
  */
 class ScheduleBuilder {
+
+    def build() {
+        Schedule s = new Schedule()
+
+        s.crontab = this.crontab
+        s.month = this.month?.value ? this.month.realize().build() : null
+        s.time = this.time?.value ? this.time.realize().build() : null
+        s.weekday = this.weekday?.value ? this.weekday.realize().build() : null
+        s.year = this.year
+
+        return s
+    }
 
     @YamlProperty
     String crontab

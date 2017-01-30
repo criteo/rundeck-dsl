@@ -5,6 +5,8 @@ package com.criteo.rundeck.dsl.builders
  */
 abstract class OrchestratorBuilder {
 
+    abstract build()
+
     @YamlProperty
     final String type
 

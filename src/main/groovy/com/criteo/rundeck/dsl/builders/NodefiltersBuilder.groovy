@@ -1,9 +1,20 @@
 package com.criteo.rundeck.dsl.builders
 
+import com.criteo.rundeck.dsl.model.Nodefilters
+
 /**
  * Builder of 'nodefilters' sections
  */
 class NodefiltersBuilder {
+
+    def build() {
+        Nodefilters n = new Nodefilters()
+
+        n.dispatch = this.dispatch?.value ? this.dispatch.realize().build() : null
+        n.filter = this.filter
+
+        return n
+    }
 
     @YamlProperty
     BuildingClosure dispatch = new BuildingClosure(DispatchBuilder)

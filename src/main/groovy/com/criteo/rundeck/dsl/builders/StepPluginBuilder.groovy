@@ -1,9 +1,20 @@
 package com.criteo.rundeck.dsl.builders
 
+import com.criteo.rundeck.dsl.model.StepPlugin
+
 /**
  * Builder of 'step-plugin' sections
  */
 class StepPluginBuilder extends CommandBuilder {
+
+    def build() {
+        StepPlugin s = new StepPlugin()
+
+        s.configuration = this.configuration?.value ? this.configuration.realize().build() : null
+        s.type = this.type
+
+        return s
+    }
 
     @YamlProperty
     BuildingClosure configuration = new BuildingClosure(ConfigurationBuilder)

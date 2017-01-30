@@ -1,9 +1,21 @@
 package com.criteo.rundeck.dsl.builders
 
+import com.criteo.rundeck.dsl.model.Email
+
 /**
  * Builder of 'email' sections
  */
 class EmailBuilder {
+
+    def build() {
+        Email e = new Email()
+
+        e.attachLog = this.attachLog
+        e.recipients = this.recipients
+        e.subject = this.subject
+
+        return e
+    }
 
     @YamlProperty
     Boolean attachLog

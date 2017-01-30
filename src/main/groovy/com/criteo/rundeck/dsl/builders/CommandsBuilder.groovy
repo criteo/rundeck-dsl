@@ -2,6 +2,8 @@ package com.criteo.rundeck.dsl.builders
 
 abstract class CommandsBuilder {
 
+    abstract build()
+
     abstract def registerCommand(BuildingClosure c)
 
     final def registerCommand(Class builder, Closure value) {

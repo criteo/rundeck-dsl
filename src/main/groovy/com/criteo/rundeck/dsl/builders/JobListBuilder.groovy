@@ -1,9 +1,19 @@
 package com.criteo.rundeck.dsl.builders
 
+import com.criteo.rundeck.dsl.model.JobList
+
 /**
  * Builder of 'job-list' sections
  */
 class JobListBuilder {
+
+    def build() {
+        JobList j = new JobList()
+
+        j.jobClosures = this.jobClosures.collect() { it.realize().build() }
+
+        return j
+    }
 
     def jobClosures = []
 

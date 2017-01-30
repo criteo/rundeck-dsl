@@ -1,5 +1,7 @@
 package com.criteo.rundeck.dsl.builders
 
+import com.criteo.rundeck.dsl.model.JobList
+
 import java.lang.reflect.Field
 
 class YamlGenerator {
@@ -27,27 +29,36 @@ class YamlGenerator {
         v.class == BuildingClosure
     }
 
+    private static boolean isModel(v) {
+        !(v instanceof Enum) && v.getClass().getPackage().getName() == "com.criteo.rundeck.dsl.model"
+    }
+
     static def generate(value) {
         if (value == null) {
             return null
 
         } else if (isMap(value)) {
             if (!value.empty) {
-                return value.collectEntries { [(it.key): it.value ? generate(it.value) : null] }.findAll { it.value != null }.sort()
+                return value.collectEntries {
+                    [(it.key): it.value ? generate(it.value) : null]
+                }.findAll {
+                    it.value != null
+                }.sort()
             }
 
         } else if (isArray(value)) {
             if (!value.empty) {
-                return value.collect { generate(it) }.findAll()
+                return value.collect {
+                    generate(it)
+                }.findAll()
             }
 
-        } else if (isBuildingClosure(value)) {
-            if (value.value == null) {
-                return null
-            }
-            def o = value.realize()
-            return queryAllYamlFields(o.class).collectEntries { Field f, YamlProperty yamlProperty ->
-                def v = generate(o[f.name])
+        } else if (isPrimitive(value)) {
+            return value
+
+        } else if (isModel(value)) {
+            return queryAllYamlFields(value.class).collectEntries { Field f, YamlProperty yamlProperty ->
+                def v = generate(value[f.name])
                 if (v == null) {
                     return [:]
                 } else if (yamlProperty.merge()) {
@@ -56,18 +67,14 @@ class YamlGenerator {
                     return [(yamlProperty.name() ?: f.name): v]
                 }
             }.sort()
-
-        } else if (isPrimitive(value)) {
-            return value
-
         } else {
             return value.toString()
         }
     }
 
     static def generate(JobListBuilder b) {
-        b.jobClosures.collect {
-            generate(it)
-        }
+        JobList j = b.build()
+        j.checker()
+        j.jobClosures.collect { generate(it) }
     }
 }

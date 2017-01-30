@@ -1,12 +1,22 @@
 package com.criteo.rundeck.dsl.builders
 
 import com.criteo.rundeck.dsl.model.Actions
+import com.criteo.rundeck.dsl.model.Loglimit
 
 /**
  * Builder of 'limitAction' sections
  */
 class LoglimitBuilder {
 
+    def build() {
+        Loglimit l = new Loglimit()
+
+        l.action = this.action
+        l.limit = this.limit
+        l.statusOnHalt = this.statusOnHalt
+
+        return l
+    }
 
     @YamlProperty(name='loglimitAction')
     Actions action
