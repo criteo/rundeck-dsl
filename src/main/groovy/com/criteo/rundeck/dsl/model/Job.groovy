@@ -24,6 +24,9 @@ class Job {
     String description
 
     @YamlProperty
+    Boolean executionEnabled
+
+    @YamlProperty
     String group
 
     @YamlProperty
@@ -42,6 +45,9 @@ class Job {
     Nodefilters nodefilters
 
     @YamlProperty
+    Boolean nodesSelectedByDefault
+
+    @YamlProperty
     Notification notification
 
     @YamlProperty(merge=true)
@@ -55,6 +61,9 @@ class Job {
 
     @YamlProperty
     Schedule schedule
+
+    @YamlProperty
+    Boolean scheduleEnabled
 
     @YamlProperty
     Sequence sequence
