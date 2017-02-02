@@ -1,7 +1,6 @@
 package com.criteo.rundeck.dsl.model
 
 import com.criteo.rundeck.dsl.builders.YamlProperty
-import org.apache.commons.lang3.StringEscapeUtils
 
 class Job {
 

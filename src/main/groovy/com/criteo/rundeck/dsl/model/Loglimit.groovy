@@ -2,8 +2,6 @@ package com.criteo.rundeck.dsl.model
 
 import com.criteo.rundeck.dsl.builders.YamlProperty
 
-import com.criteo.rundeck.dsl.model.Actions
-
 class Loglimit {
 
     def checker() { return null }
