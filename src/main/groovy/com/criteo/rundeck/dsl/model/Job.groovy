@@ -72,5 +72,5 @@ class Job {
     String timeout
 
     @YamlProperty
-    UUID uuid
+    String uuid
 }

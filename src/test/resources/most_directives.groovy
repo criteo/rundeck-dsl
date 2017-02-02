@@ -5,7 +5,7 @@ import com.criteo.rundeck.dsl.model.Strategy
 job('') {
     group('Runner Tests')
     name('most_directives')
-    uuid(UUID.fromString('e5224053-200e-4b65-aabb-4cefaef01a10'))
+    uuid('e5224053-200e-4b65-aabb-4cefaef01a10')
 
     description('''\
 Invoke as much directives as possible

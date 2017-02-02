@@ -67,7 +67,7 @@ class JobBuilder {
 
     String timeout
 
-    UUID uuid
+    String uuid
 
     def description(String value) {
         this.description = value
@@ -146,7 +146,7 @@ class JobBuilder {
         this.timeout = value
     }
 
-    def uuid(UUID value) {
+    def uuid(String value) {
         this.uuid = value
     }
 
