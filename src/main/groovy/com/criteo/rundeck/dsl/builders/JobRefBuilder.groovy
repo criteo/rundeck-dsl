@@ -10,43 +10,47 @@ class JobRefBuilder extends CommandBuilder {
     def build() {
         JobRef j = new JobRef()
 
-        j.jobref = [ args: this.jobref.args,
-                     group: this.jobref.group,
-                     name: this.jobref.name,
-                     nodeStep: this.jobref.nodeStep,
+        j.jobref = [ args: this.args,
+                     group: this.group,
+                     name: this.name,
+                     nodeStep: this.nodeStep,
                      nodefilters: null ]
 
-        if (this.jobref.nodefilters?.value) {
-            j.jobref.nodefilters = this.jobref.nodefilters.realize().build()
+        if (this.nodefilters?.value) {
+            j.jobref.nodefilters = this.nodefilters.realize().build()
         }
 
         return j
     }
 
-    def jobref = [ args: null,
-                   group: null,
-                   name: null,
-                   nodeStep: null,
-                   nodefilters: new BuildingClosure(NodefiltersBuilder) ]
+    String args
+
+    String group
+
+    String name
+
+    Boolean nodeStep
+
+    BuildingClosure nodefilters = new BuildingClosure(NodefiltersBuilder)
 
     def args(String value) {
-        this.jobref.args = value
+        this.args = value
     }
 
     def group(String value) {
-        this.jobref.group = value
+        this.group = value
     }
 
     def name(String value) {
-        this.jobref.name = value
+        this.name = value
     }
 
     def nodeStep(Boolean value = true) {
-        this.jobref.nodeStep = value
+        this.nodeStep = value
     }
 
     def nodefilters(@DelegatesTo(NodefiltersBuilder) Closure value, boolean overwrite = false) {
-        this.jobref.nodefilters.absorb(value, overwrite)
+        this.nodefilters.absorb(value, overwrite)
     }
 
 }
