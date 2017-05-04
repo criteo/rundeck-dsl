@@ -1,5 +1,6 @@
 package com.criteo.rundeck.dsl.builders
 
+import com.criteo.rundeck.dsl.doc.MethodDoc
 import com.criteo.rundeck.dsl.model.Configuration
 
 /**
@@ -17,6 +18,7 @@ class ConfigurationBuilder {
 
     def entries = [:]
 
+    @MethodDoc('Adds a new key/value pair to this configuration')
     def entry(String key, String value) {
         this.entries.put(key, value)
     }

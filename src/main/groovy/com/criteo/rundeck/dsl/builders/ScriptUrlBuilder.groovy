@@ -1,5 +1,6 @@
 package com.criteo.rundeck.dsl.builders
 
+import com.criteo.rundeck.dsl.doc.MethodDoc
 import com.criteo.rundeck.dsl.model.ScriptUrl
 
 /**
@@ -21,6 +22,7 @@ class ScriptUrlBuilder extends ScriptInvocationBuilder {
 
     String url
 
+    // Sets the URL where to find the script file (documented in the caller)
     def url(String value) {
         this.url = value
     }

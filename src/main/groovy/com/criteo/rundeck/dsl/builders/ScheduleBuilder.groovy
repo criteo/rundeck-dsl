@@ -1,5 +1,6 @@
 package com.criteo.rundeck.dsl.builders
 
+import com.criteo.rundeck.dsl.doc.MethodDoc
 import com.criteo.rundeck.dsl.model.Schedule
 
 /**
@@ -29,10 +30,12 @@ class ScheduleBuilder {
 
     String year
 
+    @MethodDoc('Sets this schedule with a crontab formatted string') // TODO: add a link to the details of the syntax
     def crontab(String value) {
         this.crontab = value
     }
 
+    @MethodDoc('Sets the months for this schedule') // TODO: take array as argument, take enumeration for months
     def month(String monthValue, @DelegatesTo(MonthBuilder) Closure value = {}) {
         this.month.absorb({
             delegate.month(monthValue)
@@ -40,14 +43,17 @@ class ScheduleBuilder {
         }, true)
     }
 
+    @MethodDoc('Sets the time for this schedule')
     def time(@DelegatesTo(TimeBuilder) Closure value) {
         this.time.absorb(value, true)
     }
 
+    @MethodDoc('Sets the weekdays for this schedule')
     def weekday(@DelegatesTo(WeekdayBuilder) Closure value) {
         this.weekday.absorb(value, true)
     }
 
+    @MethodDoc('Sets the years for this schedule')
     def year(String value) {
         this.year = value
     }

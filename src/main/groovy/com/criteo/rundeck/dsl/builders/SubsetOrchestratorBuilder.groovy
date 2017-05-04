@@ -1,5 +1,6 @@
 package com.criteo.rundeck.dsl.builders
 
+import com.criteo.rundeck.dsl.doc.MethodDoc
 import com.criteo.rundeck.dsl.model.SubsetOrchestrator
 
 /**
@@ -20,6 +21,7 @@ class SubsetOrchestratorBuilder extends OrchestratorBuilder {
         super('subset')
     }
 
+    @MethodDoc('Sets the maximum number of nodes to process.')
     def count(Integer value) {
         this.configuration.absorb({
             entry('count', value.toString())

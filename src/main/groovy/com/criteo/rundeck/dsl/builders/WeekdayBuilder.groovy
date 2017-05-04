@@ -1,5 +1,6 @@
 package com.criteo.rundeck.dsl.builders
 
+import com.criteo.rundeck.dsl.doc.MethodDoc
 import com.criteo.rundeck.dsl.model.Weekday
 
 /**
@@ -17,6 +18,9 @@ class WeekdayBuilder {
 
     String day
 
+    // TODO: introduce an enumeration and have "day" accept a list of members instead
+
+    @MethodDoc('Sets the days of the week when to trigger the execution.')
     def day(String value) {
         this.day = value
     }

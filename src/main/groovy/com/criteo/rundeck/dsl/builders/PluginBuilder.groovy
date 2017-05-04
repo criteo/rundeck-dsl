@@ -1,5 +1,6 @@
 package com.criteo.rundeck.dsl.builders
 
+import com.criteo.rundeck.dsl.doc.MethodDoc
 import com.criteo.rundeck.dsl.model.Plugin
 
 /**
@@ -20,10 +21,12 @@ class PluginBuilder {
 
     String type
 
+    @MethodDoc('Sets the parameters for this plugin.')
     def configuration(@DelegatesTo(ConfigurationBuilder) Closure value, overwrite = false) {
         this.configuration.absorb(value, overwrite)
     }
 
+    @MethodDoc('Sets the type of the plugin.')
     def type(String value) {
         this.type = value
     }

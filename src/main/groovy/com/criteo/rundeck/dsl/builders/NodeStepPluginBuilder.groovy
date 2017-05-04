@@ -1,5 +1,6 @@
 package com.criteo.rundeck.dsl.builders
 
+import com.criteo.rundeck.dsl.doc.MethodDoc
 import com.criteo.rundeck.dsl.model.NodeStepPlugin
 
 /**
@@ -39,10 +40,12 @@ class NodeStepPluginBuilder extends CommandBuilder {
         }, true)
     }
 
+    @MethodDoc('Sets the parameters for this plugin.')
     def configuration(@DelegatesTo(ConfigurationBuilder) Closure value, boolean overwrite = false) {
         this.configuration.absorb(value, overwrite)
     }
 
+    @MethodDoc('Sets the type of the plugin.')
     def type(String value) {
         this.type = value
     }

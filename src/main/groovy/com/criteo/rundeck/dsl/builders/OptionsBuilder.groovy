@@ -1,5 +1,6 @@
 package com.criteo.rundeck.dsl.builders
 
+import com.criteo.rundeck.dsl.doc.MethodDoc
 import com.criteo.rundeck.dsl.model.Options
 
 /**
@@ -20,6 +21,7 @@ class OptionsBuilder {
 
     Boolean preserveOrder
 
+    @MethodDoc('Configures a new option')
     def option(String optionName, @DelegatesTo(OptionBuilder) Closure value = {}) {
         this.options.add(new BuildingClosure(OptionBuilder, {
             name(optionName)
@@ -27,6 +29,7 @@ class OptionsBuilder {
         }))
     }
 
+    @MethodDoc('Sets whether the order with which the options were specified shall be preserved.')
     def preserveOrder(Boolean value = true) {
         this.preserveOrder = value
     }

@@ -1,5 +1,6 @@
 package com.criteo.rundeck.dsl.builders
 
+import com.criteo.rundeck.dsl.doc.MethodDoc
 import com.criteo.rundeck.dsl.model.MaxPercentageOrchestrator
 
 /**
@@ -20,6 +21,7 @@ class MaxPercentageOrchestratorBuilder extends OrchestratorBuilder {
         super('maxPercentage')
     }
 
+    @MethodDoc('Sets the maximum percentage of nodes to process.')
     def percent(Integer value) {
         this.configuration.absorb({
             entry('percent', value.toString())

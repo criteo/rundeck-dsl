@@ -1,5 +1,6 @@
 package com.criteo.rundeck.dsl.builders
 
+import com.criteo.rundeck.dsl.doc.MethodDoc
 import com.criteo.rundeck.dsl.model.ScriptInvocation
 
 /**
@@ -22,10 +23,12 @@ class ScriptInvocationBuilder extends CommandBuilder {
 
     BuildingClosure interpreter = new BuildingClosure(ScriptInterpreterBuilder)
 
+    @MethodDoc('Sets the arguments to pass to the script.')
     def args(String value) {
         this.args = value
     }
 
+    @MethodDoc('Configures an interpreter to use to execute the script.')
     def interpreter(String interpreterCommand, @DelegatesTo(ScriptInterpreterBuilder) Closure value = {}, boolean overwrite = false) {
         value = { command(interpreterCommand) } << value
         this.interpreter.absorb(value, overwrite)

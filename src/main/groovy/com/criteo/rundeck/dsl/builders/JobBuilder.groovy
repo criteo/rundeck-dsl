@@ -1,5 +1,6 @@
 package com.criteo.rundeck.dsl.builders
 
+import com.criteo.rundeck.dsl.doc.MethodDoc
 import com.criteo.rundeck.dsl.model.Job
 import com.criteo.rundeck.dsl.model.LogLevel
 
@@ -69,35 +70,43 @@ class JobBuilder {
 
     String uuid
 
+    @MethodDoc('Sets the description for this job (can be blank). The first line is the "simple description". Remaining lines are the "extended description"')
     def description(String value) {
         this.description = value
     }
 
+    @MethodDoc('Sets whether this job is enabled for execution.')
     def executionEnabled(Boolean value = true) {
         this.executionEnabled = value
     }
 
+    @MethodDoc('Sets the group name of this job.')
     def group(String value) {
         this.group = value
     }
 
+    @MethodDoc('Sets the log level to use for this job.')
     def loglevel(LogLevel value) {
         this.loglevel = value
     }
 
+    @MethodDoc('Sets the logging limit for this job.')
     def loglimit(String loggingLimit, @DelegatesTo(LoglimitBuilder) Closure value, boolean overwrite = false) {
         value = ({ limit(loggingLimit) } << value)
         this.loglimit.absorb(value, overwrite)
     }
 
+    @MethodDoc('Sets whether this job can executed several times at once.')
     def multipleExecutions(Boolean value = true) {
         this.multipleExecutions = value
     }
 
+    @MethodDoc('Sets the name of this job. A non-null, non-empty name is required.')
     def name(String value) {
         this.name = value
     }
 
+    @MethodDoc('Configures node filters')
     def nodefilters(@DelegatesTo(NodefiltersBuilder) Closure value, boolean overwrite = false) {
         this.nodefilters.absorb(value, overwrite)
     }
@@ -106,18 +115,22 @@ class JobBuilder {
         this.nodesSelectedByDefault = value
     }
 
+    @MethodDoc('Configures result notifications for this job')
     def notification(@DelegatesTo(NotificationBuilder) Closure value, boolean overwrite = false) {
         this.notification.absorb(value, overwrite)
     }
 
+    @MethodDoc('Configures options of this job.')
     def options(@DelegatesTo(OptionsBuilder) Closure value, boolean overwrite = false) {
         this.options.absorb(value, overwrite)
     }
 
+    @MethodDoc('Sets the number of times to retry the job if it fails or times out.')
     def retry(Integer value) {
         this.retry = value
     }
 
+    @MethodDoc('Configures the schedule for this job (for its repeated execution).')
     def schedule(@DelegatesTo(ScheduleBuilder) Closure value, boolean overwrite = false) {
         this.schedule.absorb(value, overwrite)
     }
@@ -126,26 +139,32 @@ class JobBuilder {
         this.scheduleEnabled = value
     }
 
+    @MethodDoc('Configures the workflow of this job.')
     def sequence(@DelegatesTo(SequenceBuilder) Closure value, boolean overwrite = false) {
         this.sequence.absorb(value, overwrite)
     }
 
+    @MethodDoc('Configures the orchestrator for this job as a "subset orchestrator".')
     def subsetOrchestrator(@DelegatesTo(SubsetOrchestratorBuilder) Closure value) {
         this.orchestrator = new BuildingClosure(SubsetOrchestratorBuilder, value)
     }
-    // (Require the TagOrchestrator plugin)
+
+    @MethodDoc('Configures the orchestrator for this job as a "tag orchestrator". Requires the TagOrchestrator plugin.')
     def tagOrchestrator(@DelegatesTo(TagOrchestratorBuilder) Closure value) {
         this.orchestrator = new BuildingClosure(TagOrchestratorBuilder, value)
     }
-    // (Require the MaxPercentageOrchestrator plugin)
+
+    @MethodDoc('Configures the orchestrator for this job as a "max percentage orchestrator".')
     def maxPercentageOrchestrator(@DelegatesTo(MaxPercentageOrchestratorBuilder) Closure value) {
         this.orchestrator = new BuildingClosure(MaxPercentageOrchestratorBuilder, value)
     }
 
+    @MethodDoc('Sets the maximum runtime before the job should be stopped.')
     def timeout(String value) {
         this.timeout = value
     }
 
+    @MethodDoc('Sets the unique identifier of this job')
     def uuid(String value) {
         this.uuid = value
     }

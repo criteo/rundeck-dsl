@@ -1,5 +1,6 @@
 package com.criteo.rundeck.dsl.builders
 
+import com.criteo.rundeck.dsl.doc.MethodDoc
 import com.criteo.rundeck.dsl.model.Nodefilters
 
 /**
@@ -20,10 +21,12 @@ class NodefiltersBuilder {
 
     String filter
 
+    @MethodDoc('Configures the dispatching to filtered nodes.')
     def dispatch(@DelegatesTo(DispatchBuilder) Closure value, boolean overwrite = false) {
         this.dispatch.absorb(value, overwrite)
     }
 
+    @MethodDoc('Sets the node filter string. See the node filter syntax at http://rundeck.org/docs/manual/node-filters.html.')
     def filter(String value) {
         this.filter = value
     }

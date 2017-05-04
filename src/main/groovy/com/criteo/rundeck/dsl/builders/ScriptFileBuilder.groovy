@@ -1,5 +1,6 @@
 package com.criteo.rundeck.dsl.builders
 
+import com.criteo.rundeck.dsl.doc.MethodDoc
 import com.criteo.rundeck.dsl.model.ScriptFile
 
 /**
@@ -21,6 +22,7 @@ class ScriptFileBuilder extends ScriptInvocationBuilder {
 
     String path
 
+    // Sets the path to a script file to be executed (documented in the caller)
     def path(String value) {
         this.path = value
     }

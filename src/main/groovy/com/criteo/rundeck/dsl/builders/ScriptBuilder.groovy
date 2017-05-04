@@ -1,5 +1,6 @@
 package com.criteo.rundeck.dsl.builders
 
+import com.criteo.rundeck.dsl.doc.MethodDoc
 import com.criteo.rundeck.dsl.model.Script
 
 /**
@@ -22,6 +23,7 @@ class ScriptBuilder extends ScriptInvocationBuilder {
 
     String body
 
+    // Sets the body of the script to be executed (documented in the caller)
     def body(String value) {
         this.body = value
     }

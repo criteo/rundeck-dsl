@@ -1,5 +1,6 @@
 package com.criteo.rundeck.dsl.builders
 
+import com.criteo.rundeck.dsl.doc.MethodDoc
 import com.criteo.rundeck.dsl.model.Actions
 import com.criteo.rundeck.dsl.model.Loglimit
 
@@ -24,15 +25,18 @@ class LoglimitBuilder {
 
     String statusOnHalt
 
+    @MethodDoc('Sets the logging limit for this job.')
     def limit(String value) {
         this.limit = value
     }
 
+    @MethodDoc('Makes the job halts with the specified status when the log limit is reached.')
     def halt(String status = null) {
         this.action = Actions.HALT
         this.statusOnHalt = status
     }
 
+    @MethodDoc('Stops keeping output.')
     def truncate() {
         this.action = Actions.TRUNCATE
     }

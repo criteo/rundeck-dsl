@@ -1,5 +1,6 @@
 package com.criteo.rundeck.dsl.builders
 
+import com.criteo.rundeck.dsl.doc.MethodDoc
 import com.criteo.rundeck.dsl.model.ScriptInterpreter
 
 /**
@@ -20,10 +21,12 @@ class ScriptInterpreterBuilder {
 
     String command
 
+    @MethodDoc('Sets whether the script and arguments should be quoted when passed to the interpreter.')
     def argsQuoted(Boolean value = true) {
         this.argsQuoted = value
     }
 
+    @MethodDoc('Sets an interpreter line for the script (the script and args will be passed to it).')
     def command(String value) {
         this.command = value
     }
