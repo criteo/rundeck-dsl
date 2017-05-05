@@ -50,13 +50,20 @@ class JobRefBuilder extends CommandBuilder {
     }
 
     @MethodDoc('Sets whether this job reference shall be executed as a node step.')
-    def nodeStep(Boolean value = true) {
+    def nodeStep(Boolean value) {
         this.nodeStep = value
     }
 
+    def nodeStep() {
+        this.nodeStep(true)
+    }
+
     @MethodDoc('Configures the node filters to use for this reference (overriding the filters of the referenced job).')
-    def nodefilters(@DelegatesTo(NodefiltersBuilder) Closure value, boolean overwrite = false) {
+    def nodefilters(@DelegatesTo(NodefiltersBuilder) Closure value, boolean overwrite) {
         this.nodefilters.absorb(value, overwrite)
     }
 
+    def nodefilters(@DelegatesTo(NodefiltersBuilder) Closure value) {
+        this.nodefilters(value, false)
+    }
 }

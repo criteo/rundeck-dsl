@@ -32,13 +32,21 @@ class DispatchBuilder {
     Integer threadcount
 
     @MethodDoc('Determines precedence for filters.')
-    def excludePrecedence(Boolean value = true) {
+    def excludePrecedence(Boolean value) {
         this.excludePrecedence = value
     }
 
+    def excludePrecedence() {
+        this.excludePrecedence(true)
+    }
+
     @MethodDoc('Sets whether to keep going on remaining nodes if failures occur on some nodes.')
-    def keepgoing(Boolean value = true) {
+    def keepgoing(Boolean value) {
         this.keepgoing = value
+    }
+
+    def keepgoing() {
+        this.keepgoing(true)
     }
 
     @MethodDoc('Sets the name of the node attribute to use for ordering the sequence of nodes.')

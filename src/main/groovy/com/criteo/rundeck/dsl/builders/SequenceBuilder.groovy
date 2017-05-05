@@ -26,8 +26,12 @@ class SequenceBuilder extends CommandsBuilder {
     Strategy strategy
 
     @MethodDoc('Sets whether the sequence should keep going if an error occurs.')
-    def keepgoing(Boolean value = true) {
+    def keepgoing(Boolean value) {
         this.keepgoing = value
+    }
+
+    def keepgoing() {
+        this.keepgoing(true)
     }
 
     @MethodDoc('Sets the strategy for executing the sequence across a set of nodes.')

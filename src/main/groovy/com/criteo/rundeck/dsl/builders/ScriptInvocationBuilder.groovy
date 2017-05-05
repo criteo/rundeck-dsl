@@ -29,9 +29,16 @@ class ScriptInvocationBuilder extends CommandBuilder {
     }
 
     @MethodDoc('Configures an interpreter to use to execute the script.')
-    def interpreter(String interpreterCommand, @DelegatesTo(ScriptInterpreterBuilder) Closure value = {}, boolean overwrite = false) {
+    def interpreter(String interpreterCommand, @DelegatesTo(ScriptInterpreterBuilder) Closure value, boolean overwrite) {
         value = { command(interpreterCommand) } << value
         this.interpreter.absorb(value, overwrite)
     }
 
+    def interpreter(String interpreterCommand, @DelegatesTo(ScriptInterpreterBuilder) Closure value) {
+        this.interpreter(interpreterCommand, value, false)
+    }
+
+    def interpreter(String interpreterCommand) {
+        this.interpreter(interpreterCommand, {})
+    }
 }

@@ -76,8 +76,12 @@ class JobBuilder {
     }
 
     @MethodDoc('Sets whether this job is enabled for execution.')
-    def executionEnabled(Boolean value = true) {
+    def executionEnabled(Boolean value) {
         this.executionEnabled = value
+    }
+
+    def executionEnabled() {
+        this.executionEnabled(true)
     }
 
     @MethodDoc('Sets the group name of this job.')
@@ -91,14 +95,22 @@ class JobBuilder {
     }
 
     @MethodDoc('Sets the logging limit for this job.')
-    def loglimit(String loggingLimit, @DelegatesTo(LoglimitBuilder) Closure value, boolean overwrite = false) {
+    def loglimit(String loggingLimit, @DelegatesTo(LoglimitBuilder) Closure value, boolean overwrite) {
         value = ({ limit(loggingLimit) } << value)
         this.loglimit.absorb(value, overwrite)
     }
 
+    def loglimit(String loggingLimit, @DelegatesTo(LoglimitBuilder) Closure value) {
+        this.loglimit(loggingLimit, value, false)
+    }
+
     @MethodDoc('Sets whether this job can executed several times at once.')
-    def multipleExecutions(Boolean value = true) {
+    def multipleExecutions(Boolean value) {
         this.multipleExecutions = value
+    }
+
+    def multipleExecutions() {
+        this.multipleExecutions(true)
     }
 
     @MethodDoc('Sets the name of this job. A non-null, non-empty name is required.')
@@ -107,22 +119,38 @@ class JobBuilder {
     }
 
     @MethodDoc('Configures node filters')
-    def nodefilters(@DelegatesTo(NodefiltersBuilder) Closure value, boolean overwrite = false) {
+    def nodefilters(@DelegatesTo(NodefiltersBuilder) Closure value, boolean overwrite) {
         this.nodefilters.absorb(value, overwrite)
     }
 
-    def nodesSelectedByDefault(Boolean value = true) {
+    def nodefilters(@DelegatesTo(NodefiltersBuilder) Closure value) {
+        this.nodefilters(value, false)
+    }
+
+    def nodesSelectedByDefault(Boolean value) {
         this.nodesSelectedByDefault = value
     }
 
+    def nodesSelectedByDefault() {
+        this.nodesSelectedByDefault(true)
+    }
+
     @MethodDoc('Configures result notifications for this job')
-    def notification(@DelegatesTo(NotificationBuilder) Closure value, boolean overwrite = false) {
+    def notification(@DelegatesTo(NotificationBuilder) Closure value, boolean overwrite) {
         this.notification.absorb(value, overwrite)
     }
 
+    def notification(@DelegatesTo(NotificationBuilder) Closure value) {
+        this.notification(value, false)
+    }
+
     @MethodDoc('Configures options of this job.')
-    def options(@DelegatesTo(OptionsBuilder) Closure value, boolean overwrite = false) {
+    def options(@DelegatesTo(OptionsBuilder) Closure value, boolean overwrite) {
         this.options.absorb(value, overwrite)
+    }
+
+    def options(@DelegatesTo(OptionsBuilder) Closure value) {
+        this.options(value, false)
     }
 
     @MethodDoc('Sets the number of times to retry the job if it fails or times out.')
@@ -131,17 +159,29 @@ class JobBuilder {
     }
 
     @MethodDoc('Configures the schedule for this job (for its repeated execution).')
-    def schedule(@DelegatesTo(ScheduleBuilder) Closure value, boolean overwrite = false) {
+    def schedule(@DelegatesTo(ScheduleBuilder) Closure value, boolean overwrite) {
         this.schedule.absorb(value, overwrite)
     }
 
-    def scheduleEnabled(Boolean value = true) {
+    def schedule(@DelegatesTo(ScheduleBuilder) Closure value) {
+        this.schedule(value, false)
+    }
+
+    def scheduleEnabled(Boolean value) {
         this.scheduleEnabled = value
     }
 
+    def scheduleEnabled() {
+        this.scheduleEnabled(true)
+    }
+
     @MethodDoc('Configures the workflow of this job.')
-    def sequence(@DelegatesTo(SequenceBuilder) Closure value, boolean overwrite = false) {
+    def sequence(@DelegatesTo(SequenceBuilder) Closure value, boolean overwrite) {
         this.sequence.absorb(value, overwrite)
+    }
+
+    def sequence(@DelegatesTo(SequenceBuilder) Closure value) {
+        this.sequence(value, false)
     }
 
     @MethodDoc('Configures the orchestrator for this job as a "subset orchestrator".')

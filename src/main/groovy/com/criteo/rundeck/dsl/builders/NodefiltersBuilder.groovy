@@ -22,8 +22,12 @@ class NodefiltersBuilder {
     String filter
 
     @MethodDoc('Configures the dispatching to filtered nodes.')
-    def dispatch(@DelegatesTo(DispatchBuilder) Closure value, boolean overwrite = false) {
+    def dispatch(@DelegatesTo(DispatchBuilder) Closure value, boolean overwrite) {
         this.dispatch.absorb(value, overwrite)
+    }
+
+    def dispatch(@DelegatesTo(DispatchBuilder) Closure value) {
+        this.dispatch(value, false)
     }
 
     @MethodDoc('Sets the node filter string. See the node filter syntax at http://rundeck.org/docs/manual/node-filters.html.')

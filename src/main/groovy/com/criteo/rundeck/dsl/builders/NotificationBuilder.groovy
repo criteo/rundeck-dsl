@@ -25,18 +25,29 @@ class NotificationBuilder {
     BuildingClosure onsuccess = new BuildingClosure(NotificationDefinitionBuilder)
 
     @MethodDoc('Configures a notifier to be triggered in case of failure.')
-    def onfailure(@DelegatesTo(NotificationDefinitionBuilder) Closure value, boolean overwrite = false) {
+    def onfailure(@DelegatesTo(NotificationDefinitionBuilder) Closure value, boolean overwrite) {
         this.onfailure.absorb(value, overwrite)
     }
 
+    def onfailure(@DelegatesTo(NotificationDefinitionBuilder) Closure value) {
+        this.onfailure(value, false)
+    }
+
     @MethodDoc('Configures a notifier to be triggered when the workflow starts.')
-    def onstart(@DelegatesTo(NotificationDefinitionBuilder) Closure value, boolean overwrite = false) {
+    def onstart(@DelegatesTo(NotificationDefinitionBuilder) Closure value, boolean overwrite) {
         this.onstart.absorb(value, overwrite)
     }
 
+    def onstart(@DelegatesTo(NotificationDefinitionBuilder) Closure value) {
+        this.onstart(value, false)
+    }
+
     @MethodDoc('Configures a notifier to be triggered in case of success.')
-    def onsuccess(@DelegatesTo(NotificationDefinitionBuilder) Closure value, boolean overwrite = false) {
+    def onsuccess(@DelegatesTo(NotificationDefinitionBuilder) Closure value, boolean overwrite) {
         this.onsuccess.absorb(value, overwrite)
     }
 
+    def onsuccess(@DelegatesTo(NotificationDefinitionBuilder) Closure value) {
+        this.onsuccess(value, false)
+    }
 }

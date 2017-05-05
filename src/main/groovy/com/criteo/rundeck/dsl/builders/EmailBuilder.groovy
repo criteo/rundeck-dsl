@@ -25,8 +25,12 @@ class EmailBuilder {
     String subject
 
     @MethodDoc('Sets whether the log shall be attached to this email.')
-    def attachLog(Boolean value = true) {
+    def attachLog(Boolean value) {
         this.attachLog = value
+    }
+
+    def attachLog() {
+        this.attachLog(true)
     }
 
     @MethodDoc('Sets the comma-separated list of recipients for this email.')

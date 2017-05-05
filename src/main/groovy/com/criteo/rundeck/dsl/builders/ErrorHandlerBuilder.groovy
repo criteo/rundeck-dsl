@@ -22,8 +22,12 @@ class ErrorHandlerBuilder extends CommandsBuilder {
     Boolean keepgoingOnSuccess
 
     @MethodDoc('Sets whether the workflow sequence shall continue when the error handler succeeds and when the workflow "keepgoing" is false.')
-    def keepgoingOnSuccess(Boolean value = true) {
+    def keepgoingOnSuccess(Boolean value) {
         this.keepgoingOnSuccess = value
+    }
+
+    def keepgoingOnSuccess() {
+        this.keepgoingOnSuccess(true)
     }
 
     def registerCommand(BuildingClosure c) {

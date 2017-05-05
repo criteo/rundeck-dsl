@@ -22,8 +22,12 @@ class PluginBuilder {
     String type
 
     @MethodDoc('Sets the parameters for this plugin.')
-    def configuration(@DelegatesTo(ConfigurationBuilder) Closure value, overwrite = false) {
+    def configuration(@DelegatesTo(ConfigurationBuilder) Closure value, boolean overwrite) {
         this.configuration.absorb(value, overwrite)
+    }
+
+    def configuration(@DelegatesTo(ConfigurationBuilder) Closure value) {
+        this.configuration(value, false)
     }
 
     @MethodDoc('Sets the type of the plugin.')

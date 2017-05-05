@@ -19,8 +19,11 @@ abstract class CommandBuilder {
     }
 
     @MethodDoc('Configures the error handler for this command.')
-    def errorhandler(@DelegatesTo(ErrorHandlerBuilder) Closure value, boolean overwrite = false) {
+    def errorhandler(@DelegatesTo(ErrorHandlerBuilder) Closure value, boolean overwrite) {
         this.errorhandler.absorb(value, overwrite)
     }
 
+    def errorhandler(@DelegatesTo(ErrorHandlerBuilder) Closure value) {
+        this.errorhandler(value, false)
+    }
 }

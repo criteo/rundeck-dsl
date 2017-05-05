@@ -76,18 +76,30 @@ class OptionBuilder {
     }
 
     @MethodDoc('Sets whether this option value must be one of the specified possible values.')
-    def enforcedValues(Boolean value = true) {
+    def enforcedValues(Boolean value) {
         this.enforcedValues = value
     }
 
+    def enforcedValues() {
+        this.enforcedValues(true)
+    }
+
     @MethodDoc('Sets whether this option should display as a date/time input field.')
-    def isDate(Boolean value = true) {
+    def isDate(Boolean value) {
         this.isDate = value
     }
 
+    def isDate() {
+        this.isDate(true)
+    }
+
     @MethodDoc('Sets whether this option supports multiple input values.')
-    def multivalued(Boolean value = true) {
+    def multivalued(Boolean value) {
         this.multivalued = value
+    }
+
+    def multivalued() {
+        this.multivalued(true)
     }
 
     // Sets the name identifying this option (documented in the caller)
@@ -101,13 +113,21 @@ class OptionBuilder {
     }
 
     @MethodDoc('Sets whether this option is required or not.')
-    def required(Boolean value = true) {
+    def required(Boolean value) {
         this.required = value
     }
 
+    def required() {
+        this.required(true)
+    }
+
     @MethodDoc('Sets whether this option is a secure input option. Not compatible with "multivalued".')
-    def secure(Boolean value = true) {
+    def secure(Boolean value) {
         this.secure = value
+    }
+
+    def secure() {
+        this.secure(true)
     }
 
     @MethodDoc('Sets a storage path to password value to use as default for a secure option.')
@@ -121,8 +141,12 @@ class OptionBuilder {
     }
 
     @MethodDoc('Sets whether a secure input option value is exposed to scripts or not. False means the option will be used only as a Secure Remote Authentication option.')
-    def valueExposed(Boolean value = true) {
+    def valueExposed(Boolean value) {
         this.valueExposed = value
+    }
+
+    def valueExposed() {
+        this.valueExposed(true)
     }
 
     @MethodDoc('Sets a set of possible values for this option.')

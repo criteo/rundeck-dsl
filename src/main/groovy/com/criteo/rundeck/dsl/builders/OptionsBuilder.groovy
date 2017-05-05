@@ -22,16 +22,23 @@ class OptionsBuilder {
     Boolean preserveOrder
 
     @MethodDoc('Configures a new option')
-    def option(String optionName, @DelegatesTo(OptionBuilder) Closure value = {}) {
+    def option(String optionName, @DelegatesTo(OptionBuilder) Closure value) {
         this.options.add(new BuildingClosure(OptionBuilder, {
             name(optionName)
             with value
         }))
     }
 
+    def option(String optionName) {
+        this.option(optionName, {})
+    }
+
     @MethodDoc('Sets whether the order with which the options were specified shall be preserved.')
-    def preserveOrder(Boolean value = true) {
+    def preserveOrder(Boolean value) {
         this.preserveOrder = value
     }
 
+    def preserveOrder() {
+        this.preserveOrder(true)
+    }
 }

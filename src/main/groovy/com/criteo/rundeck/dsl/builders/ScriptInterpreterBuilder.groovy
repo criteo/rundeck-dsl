@@ -22,8 +22,12 @@ class ScriptInterpreterBuilder {
     String command
 
     @MethodDoc('Sets whether the script and arguments should be quoted when passed to the interpreter.')
-    def argsQuoted(Boolean value = true) {
+    def argsQuoted(Boolean value) {
         this.argsQuoted = value
+    }
+
+    def argsQuoted() {
+        this.argsQuoted(true)
     }
 
     @MethodDoc('Sets an interpreter line for the script (the script and args will be passed to it).')

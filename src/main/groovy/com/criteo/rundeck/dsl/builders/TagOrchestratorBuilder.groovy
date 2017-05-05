@@ -29,10 +29,14 @@ class TagOrchestratorBuilder extends OrchestratorBuilder {
     }
 
     @MethodDoc('Sets whether the job shall stop for a group when it failed for at least MaxPerGroup nodes in said group.')
-    def stopProcessingGroupAfterTooManyFailure(Boolean value = true) {
+    def stopProcessingGroupAfterTooManyFailure(Boolean value) {
         this.configuration.absorb({
             entry('stopProcessingGroupAfterTooManyFailure', value.toString())
         }, false)
+    }
+
+    def stopProcessingGroupAfterTooManyFailure() {
+        this.stopProcessingGroupAfterTooManyFailure(true)
     }
 
     @MethodDoc('Adds tags to use to group nodes.')

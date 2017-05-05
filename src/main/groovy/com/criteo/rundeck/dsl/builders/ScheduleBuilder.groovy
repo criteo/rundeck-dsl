@@ -36,11 +36,15 @@ class ScheduleBuilder {
     }
 
     @MethodDoc('Sets the months for this schedule') // TODO: take array as argument, take enumeration for months
-    def month(String monthValue, @DelegatesTo(MonthBuilder) Closure value = {}) {
+    def month(String monthValue, @DelegatesTo(MonthBuilder) Closure value) {
         this.month.absorb({
             delegate.month(monthValue)
             with value
         }, true)
+    }
+
+    def month(String monthValue) {
+        this.month(monthValue, {})
     }
 
     @MethodDoc('Sets the time for this schedule')

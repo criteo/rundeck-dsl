@@ -26,14 +26,22 @@ class NotificationDefinitionBuilder {
 
     // TODO: shouldn't it be an array?
     @MethodDoc('Configures the email to be sent.')
-    def email(@DelegatesTo(EmailBuilder) Closure value, boolean overwrite = false) {
+    def email(@DelegatesTo(EmailBuilder) Closure value, boolean overwrite) {
         this.email.absorb(value, overwrite)
+    }
+
+    def email(@DelegatesTo(EmailBuilder) Closure value) {
+        this.email(value, false)
     }
 
     // TODO: shouldn't it be an array?
     @MethodDoc('Configures the plugin to be triggered.')
-    def plugin(@DelegatesTo(PluginBuilder) Closure value, boolean overwrite = false) {
+    def plugin(@DelegatesTo(PluginBuilder) Closure value, boolean overwrite) {
         this.plugin.absorb(value, overwrite)
+    }
+
+    def plugin(@DelegatesTo(PluginBuilder) Closure value) {
+        this.plugin(value, false)
     }
 
     @MethodDoc('Adds URLs to be contacted. See more at http://rundeck.org/docs/manual/jobs.html#webhooks.')

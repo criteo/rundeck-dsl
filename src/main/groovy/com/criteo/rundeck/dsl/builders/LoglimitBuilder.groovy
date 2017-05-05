@@ -31,9 +31,13 @@ class LoglimitBuilder {
     }
 
     @MethodDoc('Makes the job halts with the specified status when the log limit is reached.')
-    def halt(String status = null) {
+    def halt(String status) {
         this.action = Actions.HALT
         this.statusOnHalt = status
+    }
+
+    def halt() {
+        this.halt(null)
     }
 
     @MethodDoc('Stops keeping output.')
