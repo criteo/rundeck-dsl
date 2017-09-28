@@ -6,7 +6,7 @@ class ScriptInvocation extends Command {
 
     def checker() { return null }
 
-    @YamlProperty(name='scriptargs')
+    @YamlProperty(name='args')
     String args
 
     @YamlProperty(name='scriptinterpreter', merge=true)
