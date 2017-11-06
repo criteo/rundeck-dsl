@@ -8,4 +8,7 @@ class Script extends ScriptInvocation {
 
     @YamlProperty(name='script')
     String body
+
+    @YamlProperty
+    String fileExtension
 }
