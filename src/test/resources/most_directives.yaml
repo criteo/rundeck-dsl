@@ -65,6 +65,7 @@
         keepgoingOnSuccess: true
       exec: echo hello world
     - description: When several lines are required
+      fileExtension: sh
       interpreterArgsQuoted: true
       script: |
         for i in hello world; do

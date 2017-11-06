@@ -81,6 +81,7 @@ for i in hello world; do
   echo $i
 done
 '''.stripIndent()) {
+            fileExtension('sh')
             description('When several lines are required')
             args('some')
             interpreter('tcsh') {

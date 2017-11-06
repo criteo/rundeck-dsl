@@ -16,7 +16,7 @@ class ScriptBuilder extends ScriptInvocationBuilder {
         s.body = this.body
         s.description = this.description
         s .errorhandler = this.errorhandler?.value ? this.errorhandler.realize().build() : null
-
+        s.fileExtension = this.fileExtension
 
         return s
     }
@@ -28,4 +28,9 @@ class ScriptBuilder extends ScriptInvocationBuilder {
         this.body = value
     }
 
+    String fileExtension
+
+    def fileExtension(String value) {
+        this.fileExtension = value
+    }
 }
