@@ -66,6 +66,7 @@
       exec: echo hello world
     - args: some
       description: When several lines are required
+      fileExtension: sh
       interpreterArgsQuoted: true
       script: |
         for i in hello world; do
