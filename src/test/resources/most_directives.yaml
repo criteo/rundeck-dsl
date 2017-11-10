@@ -64,16 +64,16 @@
       errorhandler:
         keepgoingOnSuccess: true
       exec: echo hello world
-    - description: When several lines are required
+    - args: some
+      description: When several lines are required
       fileExtension: sh
       interpreterArgsQuoted: true
       script: |
         for i in hello world; do
           echo $i
         done
-      scriptargs: some
       scriptinterpreter: tcsh
-    - scriptargs: world
+    - args: world
       scriptfile: hello.sh
       scriptinterpreter: zsh
     - interpreterArgsQuoted: true
